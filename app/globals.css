@@ -785,12 +785,16 @@ main{
 }
 .purpose-section{background:transparent!important}
 
-/* Matrix: inner 2×2 is the rounded card; axes/labels overlay the true center. */
+/* Matrix: inner 2×2 is the rounded card; axes/labels overlay the true center.
+   Legacy `.position-card>div` rules use !important and would otherwise keep the
+   overlay in normal flow, collapsing the quadrants and leaving the crosshair
+   floating in empty space. */
 .position-card{
   direction:ltr;
   position:relative!important;
   display:block!important;
   width:min(620px,100%)!important;
+  height:auto!important;
   aspect-ratio:1/1!important;
   overflow:visible!important;
   margin:88px auto 96px!important;
@@ -798,26 +802,50 @@ main{
   border-radius:0!important;
 }
 .position-card::before,
-.position-card::after,
-.position-card>div::before,
-.position-card>div::after{
+.position-card::after{
   content:none!important;
   display:none!important;
   background:none!important;
 }
-.position-grid{
-  position:absolute;
-  inset:0;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr 1fr;
-  border-radius:25px;
-  overflow:hidden;
-  background:#031616;
-  z-index:1;
+.position-card>.position-grid,
+.position-card>.position-axes{
+  content:none!important;
 }
-.position-grid>.quad{
+.position-card>.position-grid::before,
+.position-card>.position-grid::after,
+.position-card>.position-axes::before,
+.position-card>.position-axes::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+}
+.position-card>.position-grid{
+  position:absolute!important;
+  inset:0!important;
+  top:0!important;right:0!important;bottom:0!important;left:0!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  grid-template-rows:1fr 1fr!important;
+  align-items:stretch!important;
+  justify-items:stretch!important;
+  place-items:stretch!important;
+  gap:0!important;
+  width:100%!important;
+  height:100%!important;
   min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border-radius:25px!important;
+  overflow:hidden!important;
+  background:#031616!important;
+  z-index:1!important;
+  transform:none!important;
+  border:0!important;
+}
+.position-card>.position-grid>.quad{
+  min-height:0!important;
+  width:100%!important;
+  height:100%!important;
   display:grid!important;
   place-items:center!important;
   position:relative!important;
@@ -830,14 +858,24 @@ main{
   font-weight:700!important;
   font-size:clamp(16px,4.2vw,27px)!important;
   text-align:center;
-  padding:12px;
+  padding:12px!important;
+  transform:none!important;
 }
-.position-grid>.quad-tr{border-radius:0!important}
-.position-axes{
-  position:absolute;
-  inset:0;
-  z-index:5;
-  pointer-events:none;
+.position-card>.position-axes{
+  position:absolute!important;
+  inset:0!important;
+  top:0!important;right:0!important;bottom:0!important;left:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  z-index:5!important;
+  pointer-events:none!important;
+  transform:none!important;
 }
 .position-card .axis{
   position:absolute!important;
@@ -949,24 +987,35 @@ html[dir="rtl"] .position-card .label-right{
 @media(max-width:600px){
   .position-card{
     width:min(100%,420px)!important;
-    margin:64px auto 88px!important;
+    margin:56px auto 100px!important;
   }
   .position-card .axis,
   .position-card .axis-v,
   .position-card .axis-h{
     display:block!important;
   }
+  /* Keep arrows inside the card so overflow-x:hidden does not clip them. */
+  .position-card .axis-v{
+    top:0!important;
+    height:100%!important;
+  }
+  .position-card .axis-h{
+    left:0!important;
+    width:100%!important;
+  }
+  .position-card .axis-v::before{top:2px!important}
+  .position-card .axis-v::after{bottom:2px!important}
+  .position-card .axis-h::before{left:2px!important}
+  .position-card .axis-h::after{right:2px!important}
   .position-card .axis-label{
     display:block!important;
-    font-size:13px!important;
+    font-size:12px!important;
   }
-  /* Keep vertical labels; tuck horizontal labels under the card so they
-     are not clipped by the page overflow guard. */
   .position-card .label-top{
-    transform:translate(-50%,calc(-100% - 40px));
+    transform:translate(-50%,calc(-100% - 10px))!important;
   }
   .position-card .label-bottom{
-    transform:translate(-50%,calc(100% + 56px));
+    transform:translate(-50%,calc(100% + 36px))!important;
   }
   .position-card .label-left,
   .position-card .label-right{
