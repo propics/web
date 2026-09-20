@@ -60,7 +60,7 @@ const ar: Dictionary = {
     standardTitleHighlight: "العقارات",
     standardLead: "مصمم للتخصص - بدون تعقيد",
     axisSpecialized: "متخصص",
-    axisGeneric: "Generic",
+    axisGeneric: "عام",
     axisHard: "صعب الاستخدام",
     axisEasy: "سهل الاستخدام",
     quadrantGenericCrm: "نظام إدارة علاقات العملاء العام",
