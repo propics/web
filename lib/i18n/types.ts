@@ -153,6 +153,29 @@ export type Dictionary = {
     months: string[];
     slots: string[];
   };
+  contact: {
+    eyebrow: string;
+    title: string;
+    titleHighlight: string;
+    lead: string;
+    emailLabel: string;
+    phoneLabel: string;
+    locationLabel: string;
+    formTitle: string;
+    name: string;
+    namePh: string;
+    email: string;
+    emailPh: string;
+    phone: string;
+    phonePh: string;
+    message: string;
+    messagePh: string;
+    submit: string;
+    sending: string;
+    success: string;
+    error: string;
+    connectionFailed: string;
+  };
   blog: { title: string; body: string };
   trial: {
     eyebrow: string;
