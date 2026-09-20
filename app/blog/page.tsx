@@ -1,0 +1,1 @@
+import {Footer,Header} from "../components/site-shell";export default function Blog(){return <main><Header/><section className="empty-state grid-bg"><h1>Propics Insights</h1><p>Real estate sales, CRM, and operations insights are coming soon.</p></section><Footer/></main>}
