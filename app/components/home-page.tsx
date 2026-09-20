@@ -107,11 +107,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <span className="axis-label label-right">{h.axisEasy}</span>
             <div>{h.quadrantGenericCrm}</div>
             <div className="highlight matrix-brand">
-              <img src="/assets/logo-mark.png" alt="" />
-              <span>
-                <strong>propics<sup>®</sup></strong>
-                <small>بروبيكس</small>
-              </span>
+              <img src="/assets/logo-mark.png" alt="Propics" />
             </div>
             <div>{h.quadrantErp}</div>
             <div>{h.quadrantExcel}</div>

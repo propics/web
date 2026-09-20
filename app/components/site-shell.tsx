@@ -21,14 +21,11 @@ function BrandMark({
   const t = getDictionary(locale);
   return (
     <span className={`brand-mark brand-mark-${variant}`}>
-      <img src="/assets/logo-mark.png" alt="" className="brand-icon" />
-      <span className="brand-wordmark">
-        <strong>
-          {t.brand.name.toLowerCase()}
-          <sup>®</sup>
-        </strong>
-        <small>{t.brand.nameAr}</small>
-      </span>
+      <img
+        src="/assets/logo-mark.png"
+        alt={t.brand.name}
+        className="brand-icon"
+      />
     </span>
   );
 }
