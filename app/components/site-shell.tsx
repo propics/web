@@ -22,7 +22,7 @@ function BrandMark({
   return (
     <span className={`brand-mark brand-mark-${variant}`}>
       <img
-        src="/assets/logo-mark.png"
+        src="/assets/logo-mark.png?v=full"
         alt={t.brand.name}
         className="brand-icon"
       />
