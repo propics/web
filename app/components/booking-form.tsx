@@ -28,7 +28,8 @@ export function BookingForm({ locale = "en" }: { locale?: Locale }) {
       day: i + 1,
       outside: false as const,
     }));
-    const trailingCount = (7 - ((leading.length + current.length) % 7)) % 7;
+    // Always fill 6 weeks so the calendar card has no empty bottom gap.
+    const trailingCount = 42 - leading.length - current.length;
     const trailing = Array.from({ length: trailingCount }, (_, i) => ({
       day: i + 1,
       outside: true as const,
