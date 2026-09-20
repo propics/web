@@ -208,7 +208,7 @@ const en: Dictionary = {
     eyebrow: "Book a Demo",
     heroTitle: "See how Propics helps manage leads and",
     heroTitleHighlight: "close deals faster.",
-    benefitsTitle: "What you will get in this demo",
+    benefitsTitle: "What you'll get in this demo",
     benefits: ["Introduction to Propics", "Personalized walkthrough", "Answers to your questions", "Duration: 30 minutes"],
     selectDate: "Select date & time",
     availableSlots: "Available Slots",
