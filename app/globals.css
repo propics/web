@@ -106,3 +106,33 @@ main>section:nth-of-type(2) h2{font-weight:800!important;line-height:1.28!import
 /* ===== Global horizontal overflow guard ===== */
 html,body{overflow-x:hidden;max-width:100%}
 body{position:relative}
+
+/* ===== Arabic RTL localization ===== */
+html[dir="rtl"] body{font-family:"Cairo",Arial,Helvetica,sans-serif}
+html[dir="rtl"] .lead.left,
+html[dir="rtl"] .feature-copy,
+html[dir="rtl"] .booking-form label,
+html[dir="rtl"] .booking-details label,
+html[dir="rtl"] .timeline article,
+html[dir="rtl"] .testimonials article,
+html[dir="rtl"] .nav-links a{text-align:right}
+html[dir="rtl"] .lead.left{margin-left:auto;margin-right:0}
+html[dir="rtl"] .left-actions,
+html[dir="rtl"] .about-cta .actions,
+html[dir="rtl"] .features-cta .actions{margin-left:auto;margin-right:0}
+html[dir="rtl"] .whatsapp{right:auto;left:46px}
+html[dir="rtl"] .lang-switch{min-width:52px;padding:0 16px}
+html[dir="rtl"] .feature-copy li{flex-direction:row-reverse}
+html[dir="rtl"] .feature-copy li::before{margin-left:0}
+html[dir="rtl"] .why-list li::before{margin-right:0;margin-left:8px}
+html[dir="rtl"] .hamburger{margin-left:0;margin-right:auto}
+html[dir="rtl"] .axis-label.label-left{left:auto;right:-145px}
+html[dir="rtl"] .axis-label.label-right{right:auto;left:-145px}
+html[dir="rtl"] .timeline article:nth-of-type(odd){text-align:right}
+html[dir="rtl"] .timeline article:nth-of-type(even){text-align:left}
+@media(max-width:600px){
+html[dir="rtl"] .whatsapp{left:20px;right:auto}
+html[dir="rtl"] .nav-links a{text-align:right}
+}
+.button.ghost.lang-switch,.lang-switch{min-width:52px;padding:0 18px;border-color:#042727;color:#042727;background:#fff8;font-weight:800}
+.lang-switch:hover{background:#075454;color:#fff;border-color:#075454}

@@ -1,1 +1,4 @@
-﻿import {Footer,Header} from "../components/site-shell";import {TrialForm} from "../components/trial-form";export default function Contact(){return <main><Header/><section className="trial-page grid-bg"><div className="container"><TrialForm/></div></section><Footer/></main>}
+import { ContactPage } from "../components/simple-pages";
+export default function Page() {
+  return <ContactPage locale="en" />;
+}

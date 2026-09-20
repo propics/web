@@ -1,2 +1,4 @@
-import {BookingForm} from "../components/booking-form";import {Footer,Header} from "../components/site-shell";
-export default function Trial(){return <main><Header/><section className="page-hero grid-bg"><div className="container"><p className="eyebrow">Start today</p><h1>Start your <span>free trial</span></h1><p>Tell us about your company and select a convenient onboarding time.</p></div></section><section className="content-section"><div className="container form-layout"><div className="info-card"><h2>One platform. Full visibility.</h2><ul><li>Real estate-focused CRM</li><li>Projects and live unit inventory</li><li>Sales workflows and reminders</li><li>Reports and team performance</li></ul></div><BookingForm/></div></section><Footer/></main>}
+import { TrialPage } from "../components/simple-pages";
+export default function Page() {
+  return <TrialPage locale="en" />;
+}
