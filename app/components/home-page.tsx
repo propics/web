@@ -106,8 +106,12 @@ export function HomePage({ locale }: { locale: Locale }) {
             <span className="axis-label label-left">{h.axisHard}</span>
             <span className="axis-label label-right">{h.axisEasy}</span>
             <div>{h.quadrantGenericCrm}</div>
-            <div className="highlight">
-              <img src="/assets/logo.png" alt="Propics" />
+            <div className="highlight matrix-brand">
+              <img src="/assets/logo-mark.png" alt="" />
+              <span>
+                <strong>propics<sup>®</sup></strong>
+                <small>بروبيكس</small>
+              </span>
             </div>
             <div>{h.quadrantErp}</div>
             <div>{h.quadrantExcel}</div>
@@ -219,7 +223,10 @@ export function HomePage({ locale }: { locale: Locale }) {
               </a>
             </div>
           </div>
-          <img src="/assets/propics-dashboard.webp" alt="Propics" />
+          <div className="cta-devices">
+            <img src="/assets/feature-cta-laptop.png" alt="Propics dashboard" />
+            <img src="/assets/feature-cta-mobile.png" alt="Propics mobile" />
+          </div>
         </div>
       </section>
       <WhatsAppFab />

@@ -31,7 +31,9 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section className="about-hero grid-bg centered">
         <div className="container">
           <p className="eyebrow">{a.eyebrow}</p>
-          <h1>{a.heroTitle}</h1>
+          <h1>
+            {a.heroTitle} <span>{a.heroTitleHighlight}</span> {a.heroTitleRest}
+          </h1>
           <p className="lead">{a.heroLead}</p>
           <div className="actions">
             <Link className="button primary" href={p("book-demo")}>
@@ -82,7 +84,13 @@ export function AboutPage({ locale }: { locale: Locale }) {
             ))}
           </div>
           <div className="about-propics-card">
-            <img src="/assets/logo.png" alt="Propics" />
+            <div className="about-propics-logo">
+              <img src="/assets/logo-mark.png" alt="" />
+              <span>
+                <strong>propics<sup>®</sup></strong>
+                <small>بروبيكس</small>
+              </span>
+            </div>
             <p>{a.propicsCard}</p>
             <small>{a.propicsCardSmall}</small>
           </div>
@@ -93,9 +101,9 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section className="purpose-section centered">
         <div className="container">
           <h2>
-            <span>{a.purposeTitle}</span>
+            {a.purposeTitle}
             <br />
-            {a.purposeTitleRest}
+            <span>{a.purposeTitleRest}</span>
           </h2>
           <p>{a.purposeLead}</p>
           <div className="purpose-grid">

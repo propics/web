@@ -11,6 +11,28 @@ function pathForActive(locale: Locale, active?: Active): string {
   return localePath(locale, active);
 }
 
+function BrandMark({
+  locale,
+  variant = "header",
+}: {
+  locale: Locale;
+  variant?: "header" | "footer";
+}) {
+  const t = getDictionary(locale);
+  return (
+    <span className={`brand-mark brand-mark-${variant}`}>
+      <img src="/assets/logo-mark.png" alt="" className="brand-icon" />
+      <span className="brand-wordmark">
+        <strong>
+          {t.brand.name.toLowerCase()}
+          <sup>®</sup>
+        </strong>
+        <small>{t.brand.nameAr}</small>
+      </span>
+    </span>
+  );
+}
+
 export function Header({
   locale = "en",
   active,
@@ -25,8 +47,8 @@ export function Header({
   return (
     <header className="site-header">
       <nav className="nav container" aria-label={t.nav.mainNav}>
-        <Link href={p()} className="brand">
-          <img src="/assets/logo.png" alt={t.brand.name} />
+        <Link href={p()} className="brand" aria-label={t.brand.name}>
+          <BrandMark locale={locale} variant="header" />
         </Link>
         <input
           type="checkbox"
@@ -82,42 +104,99 @@ export function Header({
   );
 }
 
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.37 2.3.56 3.5.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.56 3.5a1 1 0 0 1-.25 1z"
+      />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm0 2v.5l8 5 8-5V8l-8 5-8-5z"
+      />
+    </svg>
+  );
+}
+
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
+      />
+    </svg>
+  );
+}
+
 export function Footer({ locale = "en" }: { locale?: Locale }) {
   const t = getDictionary(locale);
   const p = (path = "") => localePath(locale, path);
+  // EN LTR: Contact | Ops | Sales | About. AR dict is reversed so RTL shows About on the right.
+  const hrefGroups =
+    locale === "ar"
+      ? [
+          [p("about-us"), p("about-us"), p("features")],
+          [p("features"), p("features"), p("features")],
+          [p("features"), p("features"), p("features")],
+          [p("contact"), "#", "#"],
+        ]
+      : [
+          [p("contact"), "#", "#"],
+          [p("features"), p("features"), p("features")],
+          [p("features"), p("features"), p("features")],
+          [p("about-us"), p("about-us"), p("features")],
+        ];
+  const labelGroups = [t.footer.col1, t.footer.col2, t.footer.col3, t.footer.col4];
+  const columns = labelGroups.map((labels, i) => ({
+    links: labels.map((label, j) => ({ label, href: hrefGroups[i][j] })),
+  }));
 
   return (
-    <footer>
-      <div className="container footer-grid">
-        <div>
-          <img src="/assets/logo.png" alt={t.brand.name} />
-          <p>{t.brand.tagline}</p>
-        </div>
-        <div>
-          <h3>{t.footer.platform}</h3>
-          <Link href={p("features")}>{t.footer.col1[0]}</Link>
-          <Link href={p("about-us")}>{t.footer.col1[1]}</Link>
-          <Link href={p("features")}>{t.footer.col1[2]}</Link>
-        </div>
-        <div>
-          <h3>{t.footer.solutions}</h3>
-          <a href="#">{t.footer.col2[0]}</a>
-          <a href="#">{t.footer.col2[1]}</a>
-          <a href="#">{t.footer.col2[2]}</a>
-        </div>
-        <div>
-          <h3>{t.footer.contact}</h3>
-          <a href={`mailto:${t.footer.email}`}>{t.footer.email}</a>
-          <a href={`tel:${t.footer.phone}`}>{t.footer.phone}</a>
-          <p>{t.footer.country}</p>
-        </div>
+    <footer className="site-footer">
+      <div className="container footer-links">
+        {columns.map((col, i) => (
+          <div key={i} className="footer-col">
+            {col.links.map((link) =>
+              link.href === "#" ? (
+                <a key={link.label} href="#">
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.label} href={link.href}>
+                  {link.label}
+                </Link>
+              ),
+            )}
+          </div>
+        ))}
       </div>
-      <div className="footer-bottom container">
-        <span>{t.common.allRights}</span>
-        <span>
-          <Link href="#">{t.common.privacy}</Link> ·{" "}
-          <Link href="#">{t.common.terms}</Link>
-        </span>
+      <div className="container footer-meta">
+        <div className="footer-contact">
+          <a href={`tel:${t.footer.phone}`}>
+            <PhoneIcon />
+            <span>{t.footer.phone}</span>
+          </a>
+          <a href={`mailto:${t.footer.email}`}>
+            <MailIcon />
+            <span>{t.footer.email}</span>
+          </a>
+          <span className="footer-country">
+            <PinIcon />
+            <span>{t.footer.country}</span>
+          </span>
+        </div>
+        <Link href={p()} className="footer-brand" aria-label={t.brand.name}>
+          <BrandMark locale={locale} variant="footer" />
+        </Link>
       </div>
     </footer>
   );

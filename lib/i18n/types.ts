@@ -86,6 +86,8 @@ export type Dictionary = {
   about: {
     eyebrow: string;
     heroTitle: string;
+    heroTitleHighlight: string;
+    heroTitleRest: string;
     heroLead: string;
     teamsTitle: string;
     teamsTitleHighlight: string;
