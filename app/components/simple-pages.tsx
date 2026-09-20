@@ -52,7 +52,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
           <p className="lead">{c.lead}</p>
         </div>
       </section>
-      <section className="content-section contact-section">
+      <section className="content-section contact-section grid-bg">
         <div className="container contact-layout">
           <div className="contact-info-grid">
             {info.map((item) => (
@@ -89,7 +89,7 @@ export function TrialPage({ locale }: { locale: Locale }) {
           <p>{t.trial.lead}</p>
         </div>
       </section>
-      <section className="content-section">
+      <section className="content-section grid-bg">
         <div className="container form-layout">
           <div className="info-card">
             <h2>{t.trial.infoTitle}</h2>

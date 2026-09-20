@@ -753,3 +753,236 @@ html[dir="rtl"] .cta-inner .cta-devices img:last-child{left:auto;right:0}
 .brand-mark-footer .brand-icon,
 .footer-grid img { height: 56px !important; }
 .brand-wordmark { display: none !important; }
+
+/* ===== English handoff: matrix centering + continuous section grid ===== */
+
+/* One page-level grid so adjacent sections share the same tile origin
+   instead of each .grid-bg restarting (visible seam / black band). */
+body{background-color:#020909}
+main{
+  background-color:#020909;
+  background-image:
+    linear-gradient(90deg,rgba(4,47,47,.62),transparent 27%,transparent 73%,rgba(4,47,47,.62)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70'%3E%3Crect x='5' y='5' width='42' height='42' rx='6' fill='%23072b2b' fill-opacity='.52'/%3E%3C/svg%3E");
+  background-size:auto,70px 70px;
+  background-repeat:no-repeat,repeat;
+  background-position:0 0,0 0;
+}
+.grid-bg{
+  background-color:transparent!important;
+  background-image:none!important;
+}
+
+/* Turquoise block fades into the shared grid instead of #000. */
+.turquoise-section{
+  background:linear-gradient(180deg,#0bbab6 0%,#078e8b 40%,#003b3a 64%,rgba(2,9,9,.35) 86%,rgba(2,9,9,0) 100%)!important;
+  padding:88px 0 56px!important;
+  overflow:hidden!important;
+}
+.turquoise-section::after{display:none!important;content:none!important;background:none!important}
+.turquoise-section+.grid-bg{
+  padding-top:56px!important;
+}
+.purpose-section{background:transparent!important}
+
+/* Matrix: inner 2×2 is the rounded card; axes/labels overlay the true center. */
+.position-card{
+  direction:ltr;
+  position:relative!important;
+  display:block!important;
+  width:min(620px,100%)!important;
+  aspect-ratio:1/1!important;
+  overflow:visible!important;
+  margin:88px auto 96px!important;
+  background:transparent!important;
+  border-radius:0!important;
+}
+.position-card::before,
+.position-card::after,
+.position-card>div::before,
+.position-card>div::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+}
+.position-grid{
+  position:absolute;
+  inset:0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  border-radius:25px;
+  overflow:hidden;
+  background:#031616;
+  z-index:1;
+}
+.position-grid>.quad{
+  min-height:0!important;
+  display:grid!important;
+  place-items:center!important;
+  position:relative!important;
+  border:0!important;
+  outline:none!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  color:#777!important;
+  font-family:"Cairo",Arial,sans-serif!important;
+  font-weight:700!important;
+  font-size:clamp(16px,4.2vw,27px)!important;
+  text-align:center;
+  padding:12px;
+}
+.position-grid>.quad-tr{border-radius:0!important}
+.position-axes{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  pointer-events:none;
+}
+.position-card .axis{
+  position:absolute!important;
+  display:block!important;
+  background:#fff!important;
+  z-index:6!important;
+  pointer-events:none;
+}
+.position-card .axis-v{
+  left:50%!important;
+  right:auto!important;
+  top:-26px!important;
+  width:4px!important;
+  height:calc(100% + 52px)!important;
+  transform:translateX(-50%)!important;
+}
+.position-card .axis-h{
+  top:50%!important;
+  bottom:auto!important;
+  left:-26px!important;
+  width:calc(100% + 52px)!important;
+  height:4px!important;
+  transform:translateY(-50%)!important;
+}
+.position-card .axis-v::before,
+.position-card .axis-v::after,
+.position-card .axis-h::before,
+.position-card .axis-h::after{
+  content:""!important;
+  display:block!important;
+  position:absolute;
+  width:0;
+  height:0;
+  background:none!important;
+}
+.position-card .axis-v::before{
+  top:-20px;left:50%;transform:translateX(-50%);
+  border-left:12px solid transparent;border-right:12px solid transparent;
+  border-bottom:22px solid #fff;border-top:0;border-right-width:12px;
+}
+.position-card .axis-v::after{
+  bottom:-20px;left:50%;transform:translateX(-50%);
+  border-left:12px solid transparent;border-right:12px solid transparent;
+  border-top:22px solid #fff;border-bottom:0;
+}
+.position-card .axis-h::before{
+  left:-20px;top:50%;transform:translateY(-50%);
+  border-top:12px solid transparent;border-bottom:12px solid transparent;
+  border-right:22px solid #fff;border-left:0;
+}
+.position-card .axis-h::after{
+  right:-20px;top:50%;transform:translateY(-50%);
+  border-top:12px solid transparent;border-bottom:12px solid transparent;
+  border-left:22px solid #fff;border-right:0;
+}
+.position-card .axis-label{
+  position:absolute!important;
+  z-index:7!important;
+  color:#08b9b5!important;
+  font-weight:700!important;
+  font-size:18px!important;
+  line-height:1.2!important;
+  white-space:nowrap!important;
+  display:block!important;
+  margin:0!important;
+  pointer-events:none;
+}
+/* Sit just beyond the arrow tips; 100% self-size keeps any label length centered. */
+.position-card .label-top{
+  top:0;left:50%;right:auto;bottom:auto;
+  transform:translate(-50%,calc(-100% - 50px));
+}
+.position-card .label-bottom{
+  bottom:0;left:50%;right:auto;top:auto;
+  transform:translate(-50%,calc(100% + 50px));
+}
+.position-card .label-left{
+  top:50%;left:0;right:auto;bottom:auto;
+  transform:translate(calc(-100% - 50px),-50%);
+}
+.position-card .label-right{
+  top:50%;right:0;left:auto;bottom:auto;
+  transform:translate(calc(100% + 50px),-50%);
+}
+/* Keep Easy/Hard on the visual left/right even on the Arabic page. */
+html[dir="rtl"] .position-card .label-left{
+  left:0!important;right:auto!important;
+  transform:translate(calc(-100% - 50px),-50%)!important;
+}
+html[dir="rtl"] .position-card .label-right{
+  right:0!important;left:auto!important;
+  transform:translate(calc(100% + 50px),-50%)!important;
+}
+
+/* Journey path: start the connector on the title's vertical center, then snake. */
+.timeline{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 330 720'%3E%3Cpath d='M165 0V48Q165 75 250 75Q250 120 205 120H80Q40 120 40 160V245Q40 290 85 290H245Q290 290 290 335V405Q290 450 245 450H85Q40 450 40 495V565Q40 610 85 610H245Q290 610 290 655V720' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E")!important;
+  background-position:center top!important;
+  background-size:330px 720px!important;
+  background-repeat:no-repeat!important;
+}
+.timeline::after{
+  left:50%!important;
+  right:auto!important;
+  transform:translateX(-50%)!important;
+  top:-9px!important;
+}
+
+@media(max-width:600px){
+  .position-card{
+    width:min(100%,420px)!important;
+    margin:64px auto 88px!important;
+  }
+  .position-card .axis,
+  .position-card .axis-v,
+  .position-card .axis-h{
+    display:block!important;
+  }
+  .position-card .axis-label{
+    display:block!important;
+    font-size:13px!important;
+  }
+  /* Keep vertical labels; tuck horizontal labels under the card so they
+     are not clipped by the page overflow guard. */
+  .position-card .label-top{
+    transform:translate(-50%,calc(-100% - 40px));
+  }
+  .position-card .label-bottom{
+    transform:translate(-50%,calc(100% + 56px));
+  }
+  .position-card .label-left,
+  .position-card .label-right{
+    top:auto!important;
+    bottom:0!important;
+    transform:translateY(calc(100% + 10px))!important;
+  }
+  .position-card .label-left{left:4%!important;right:auto!important}
+  .position-card .label-right{right:4%!important;left:auto!important}
+  html[dir="rtl"] .position-card .label-left{
+    left:4%!important;right:auto!important;
+    transform:translateY(calc(100% + 10px))!important;
+  }
+  html[dir="rtl"] .position-card .label-right{
+    right:4%!important;left:auto!important;
+    transform:translateY(calc(100% + 10px))!important;
+  }
+  .turquoise-section+.grid-bg{padding-top:48px!important}
+}

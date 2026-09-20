@@ -94,7 +94,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="purpose-section centered">
+      <section className="purpose-section grid-bg centered">
         <div className="container">
           <h2>
             {a.purposeTitle}
