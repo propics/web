@@ -699,3 +699,27 @@ html[dir="rtl"] .cta-inner .cta-devices img:last-child{left:auto;right:0}
   .calendar{height:auto;}
   .slots button{height:46px!important;}
 }
+
+
+/* Calendar grid: light-gray cells + muted adjacent-month days */
+.days button,
+.days span{
+  background:#eef2f2!important;
+  border:1px solid #dde5e5!important;
+  border-radius:5px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#333!important;
+  font:inherit;
+}
+.days button.selected{
+  background:#08b9b5!important;
+  color:#fff!important;
+  border-color:#08b9b5!important;
+}
+.days span.outside{
+  color:#9aa8a8!important;
+  opacity:.55;
+  pointer-events:none;
+}
