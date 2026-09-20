@@ -59,16 +59,20 @@ export function BookingForm({ locale = "en" }: { locale?: Locale }) {
       <div className="scheduler">
         <div className="calendar">
           <div className="calendar-head">
-            <button type="button" onClick={() => changeMonth(-1)}>
-              ‹
-            </button>
+            <button
+              type="button"
+              onClick={() => changeMonth(-1)}
+              aria-label="Previous month"
+            />
             <strong>
               <small>{view.getFullYear()}</small>
               {t.months[view.getMonth()]}
             </strong>
-            <button type="button" onClick={() => changeMonth(1)}>
-              ›
-            </button>
+            <button
+              type="button"
+              onClick={() => changeMonth(1)}
+              aria-label="Next month"
+            />
           </div>
           <div className="weekdays">
             {t.weekdays.map((x) => (
