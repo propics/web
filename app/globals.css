@@ -144,7 +144,7 @@ html[dir="rtl"] .nav-links a{text-align:right}
   min-height:68px;
   padding:8px 14px!important;
   gap:12px!important;
-  border-radius:999px;
+  border-radius:18px;
   overflow:visible;
   box-sizing:border-box;
 }
@@ -179,7 +179,7 @@ html[dir="rtl"] .nav-links a{text-align:right}
 }
 .nav-links a{
   padding:10px 12px!important;
-  border-radius:14px!important;
+  border-radius:18px!important;
   font-size:14px!important;
   font-weight:700!important;
   white-space:nowrap;
@@ -418,7 +418,7 @@ html[dir="rtl"] .cta-inner .cta-devices img:last-child{left:auto;right:0}
   display:grid;
   gap:18px;
   background:linear-gradient(180deg,#08b9b5,#045a58)!important;
-  border-radius:16px!important;
+  border-radius:18px!important;
   padding:26px 32px!important;
 }
 .demo-benefits h3{font-size:18px;font-weight:800;margin:0}
@@ -538,3 +538,94 @@ html[dir="rtl"] .cta-inner .cta-devices img:last-child{left:auto;right:0}
 /* demo-hero final pad — win over older stacked rules */
 .demo-hero{padding:160px 0 36px!important;margin-bottom:0!important;min-height:auto!important}
 .demo-content{padding-bottom:96px!important}
+
+/* ===== User fixes: header curve, order, slots align ===== */
+
+/* Softer header curve (design is rounded rect, not stadium pill) */
+.nav,
+.site-header .nav{
+  border-radius:18px!important;
+}
+@media(min-width:601px){
+  .nav{border-radius:18px!important;}
+}
+@media(max-width:600px){
+  .nav{border-radius:18px!important;}
+}
+
+/* Hamburger only on small screens — was overriding display:none globally */
+@media(min-width:601px){
+  .hamburger{display:none!important;}
+  .nav-toggle{display:none!important;}
+  .nav{
+    flex-wrap:nowrap!important;
+    align-items:center!important;
+  }
+  .nav-dropdown{
+    display:flex!important;
+    order:0!important;
+    width:auto!important;
+    flex:1 1 auto!important;
+    flex-direction:row!important;
+    border-top:0!important;
+    padding:0!important;
+    margin:0!important;
+  }
+  .nav-links{
+    flex-direction:row!important;
+    width:auto!important;
+    flex:1 1 auto!important;
+    justify-content:center!important;
+    order:0!important;
+  }
+  .nav-actions{
+    flex-direction:row!important;
+    width:auto!important;
+    order:0!important;
+    flex:0 0 auto!important;
+  }
+  .nav-actions .button{width:auto!important;}
+}
+@media(max-width:600px){
+  .hamburger{display:inline-flex!important;}
+}
+
+/* Header item order on desktop: Logo | Nav | Contact | Book Demo | Ar */
+@media(min-width:601px){
+  .nav-actions .lang-switch{order:3;}
+  .nav-actions .button.light{order:1;}
+  .nav-actions .button.black{order:2;}
+}
+
+/* Book demo: align Available Slots with calendar card top */
+.scheduler{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.55fr) minmax(220px,0.85fr)!important;
+  gap:28px!important;
+  align-items:start!important;
+}
+.slots{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:12px!important;
+  margin:0!important;
+  padding:0!important;
+  align-self:start!important;
+}
+.slots h3{
+  margin:0 0 4px!important;
+  padding:0!important;
+  font-size:22px!important;
+  line-height:1.2!important;
+  color:#fff!important;
+}
+.slots button{
+  margin:0!important;
+  flex:0 0 auto;
+}
+.calendar{
+  margin:0!important;
+}
+@media(max-width:800px){
+  .scheduler{grid-template-columns:1fr!important;gap:18px!important;}
+}
