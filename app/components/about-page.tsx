@@ -85,7 +85,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
           </div>
           <div className="about-propics-card">
             <div className="about-propics-logo">
-              <img src="/assets/logo-mark.png?v=clean" alt="Propics" />
+              <img src="/assets/logo-mark.png?v=exact" alt="Propics" />
             </div>
             <p>{a.propicsCard}</p>
             <small>{a.propicsCardSmall}</small>
