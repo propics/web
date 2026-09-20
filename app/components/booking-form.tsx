@@ -14,9 +14,27 @@ export function BookingForm({ locale = "en" }: { locale?: Locale }) {
   const [message, setMessage] = useState("");
 
   const cells = useMemo(() => {
-    const first = new Date(view.getFullYear(), view.getMonth(), 1).getDay();
-    const count = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
-    return [...Array(first).fill(0), ...Array.from({ length: count }, (_, i) => i + 1)];
+    const year = view.getFullYear();
+    const month = view.getMonth();
+    const firstWeekday = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrev = new Date(year, month, 0).getDate();
+
+    const leading = Array.from({ length: firstWeekday }, (_, i) => ({
+      day: daysInPrev - firstWeekday + i + 1,
+      outside: true as const,
+    }));
+    const current = Array.from({ length: daysInMonth }, (_, i) => ({
+      day: i + 1,
+      outside: false as const,
+    }));
+    // Always fill 6 weeks so the calendar card has no empty bottom gap.
+    const trailingCount = 42 - leading.length - current.length;
+    const trailing = Array.from({ length: trailingCount }, (_, i) => ({
+      day: i + 1,
+      outside: true as const,
+    }));
+    return [...leading, ...current, ...trailing];
   }, [view]);
 
   const date = `${view.getFullYear()}-${String(view.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
@@ -59,16 +77,20 @@ export function BookingForm({ locale = "en" }: { locale?: Locale }) {
       <div className="scheduler">
         <div className="calendar">
           <div className="calendar-head">
-            <button type="button" onClick={() => changeMonth(-1)}>
-              ‹
-            </button>
+            <button
+              type="button"
+              onClick={() => changeMonth(-1)}
+              aria-label="Previous month"
+            />
             <strong>
               <small>{view.getFullYear()}</small>
               {t.months[view.getMonth()]}
             </strong>
-            <button type="button" onClick={() => changeMonth(1)}>
-              ›
-            </button>
+            <button
+              type="button"
+              onClick={() => changeMonth(1)}
+              aria-label="Next month"
+            />
           </div>
           <div className="weekdays">
             {t.weekdays.map((x) => (
@@ -76,18 +98,20 @@ export function BookingForm({ locale = "en" }: { locale?: Locale }) {
             ))}
           </div>
           <div className="days">
-            {cells.map((value, index) =>
-              value ? (
+            {cells.map((cell, index) =>
+              cell.outside ? (
+                <span className="outside" key={index}>
+                  {cell.day}
+                </span>
+              ) : (
                 <button
                   type="button"
-                  className={value === day ? "selected" : ""}
-                  onClick={() => setDay(value)}
+                  className={cell.day === day ? "selected" : ""}
+                  onClick={() => setDay(cell.day)}
                   key={index}
                 >
-                  {value}
+                  {cell.day}
                 </button>
-              ) : (
-                <span key={index} />
               ),
             )}
           </div>

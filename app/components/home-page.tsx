@@ -99,18 +99,22 @@ export function HomePage({ locale }: { locale: Locale }) {
             className="position-card"
             aria-label="Propics is specialized and easy to use"
           >
-            <span className="axis axis-v" aria-hidden="true" />
-            <span className="axis axis-h" aria-hidden="true" />
+            <div className="position-grid">
+              <div className="quad quad-tl">{h.quadrantGenericCrm}</div>
+              <div className="quad quad-tr highlight matrix-brand">
+                <img src="/assets/logo-mark.png?v=exact" alt="Propics" />
+              </div>
+              <div className="quad quad-bl">{h.quadrantErp}</div>
+              <div className="quad quad-br">{h.quadrantExcel}</div>
+            </div>
+            <div className="position-axes" aria-hidden="true">
+              <span className="axis axis-v" />
+              <span className="axis axis-h" />
+            </div>
             <span className="axis-label label-top">{h.axisSpecialized}</span>
             <span className="axis-label label-bottom">{h.axisGeneric}</span>
             <span className="axis-label label-left">{h.axisHard}</span>
             <span className="axis-label label-right">{h.axisEasy}</span>
-            <div>{h.quadrantGenericCrm}</div>
-            <div className="highlight">
-              <img src="/assets/logo.png" alt="Propics" />
-            </div>
-            <div>{h.quadrantErp}</div>
-            <div>{h.quadrantExcel}</div>
           </div>
           <p className="section-note">{h.standardNote}</p>
         </div>
@@ -219,7 +223,10 @@ export function HomePage({ locale }: { locale: Locale }) {
               </a>
             </div>
           </div>
-          <img src="/assets/propics-dashboard.webp" alt="Propics" />
+          <div className="cta-devices">
+            <img src="/assets/feature-cta-laptop.png" alt="Propics dashboard" />
+            <img src="/assets/feature-cta-mobile.png" alt="Propics mobile" />
+          </div>
         </div>
       </section>
       <WhatsAppFab />

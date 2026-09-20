@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary, localePath } from "@/lib/i18n";
 import { BookingForm } from "./booking-form";
+import { ContactForm } from "./contact-form";
 import { Footer, Header } from "./site-shell";
 
 export function BlogPage({ locale }: { locale: Locale }) {
@@ -20,21 +21,52 @@ export function BlogPage({ locale }: { locale: Locale }) {
 
 export function ContactPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const c = t.contact;
+  const info = [
+    {
+      label: c.emailLabel,
+      value: t.footer.email,
+      href: `mailto:${t.footer.email}`,
+    },
+    {
+      label: c.phoneLabel,
+      value: t.footer.phone,
+      href: `tel:${t.footer.phone}`,
+    },
+    {
+      label: c.locationLabel,
+      value: t.footer.country,
+      href: undefined as string | undefined,
+    },
+  ];
+
   return (
     <main>
       <Header locale={locale} active="contact" />
-      <section className="trial-page grid-bg">
+      <section className="page-hero contact-hero grid-bg">
         <div className="container">
-          <div className="info-card" style={{ marginBottom: 28 }}>
-            <h2>{t.nav.contact}</h2>
-            <p>
-              <a href={`mailto:${t.footer.email}`}>{t.footer.email}</a>
-            </p>
-            <p>
-              <a href={`tel:${t.footer.phone}`}>{t.footer.phone}</a>
-            </p>
-            <p>{t.footer.country}</p>
+          <p className="eyebrow">{c.eyebrow}</p>
+          <h1>
+            {c.title} <span>{c.titleHighlight}</span>
+          </h1>
+          <p className="lead">{c.lead}</p>
+        </div>
+      </section>
+      <section className="content-section contact-section grid-bg">
+        <div className="container contact-layout">
+          <div className="contact-info-grid">
+            {info.map((item) => (
+              <article className="contact-info-card" key={item.label}>
+                <h3>{item.label}</h3>
+                {item.href ? (
+                  <a href={item.href}>{item.value}</a>
+                ) : (
+                  <p>{item.value}</p>
+                )}
+              </article>
+            ))}
           </div>
+          <ContactForm locale={locale} />
         </div>
       </section>
       <Footer locale={locale} />
@@ -57,7 +89,7 @@ export function TrialPage({ locale }: { locale: Locale }) {
           <p>{t.trial.lead}</p>
         </div>
       </section>
-      <section className="content-section">
+      <section className="content-section grid-bg">
         <div className="container form-layout">
           <div className="info-card">
             <h2>{t.trial.infoTitle}</h2>
