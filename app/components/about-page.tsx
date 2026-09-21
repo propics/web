@@ -9,9 +9,9 @@ const teamIcons = [
   "/assets/about-sales-teams.png",
 ];
 const problemIcons = [
-  "/assets/pain-leads-v2.png",
-  "/assets/about-problem-confused.png",
-  "/assets/about-problem-calendar.png",
+  "/assets/about-problem-generic-tools.png",
+  "/assets/about-problem-crm.png",
+  "/assets/about-problem-missed-followups.png",
 ];
 const purposeIcons = [
   "/assets/about-purpose-leads.png",
