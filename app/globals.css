@@ -1674,7 +1674,8 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
 .booking-details{
   width:100%!important;
   max-width:none!important;
-  padding:28px 0 0!important;
+  padding:28px!important;
+  margin-top:22px!important;
   gap:20px!important;
 }
 .booking-details input{height:54px!important;border-radius:12px!important}
@@ -1692,4 +1693,425 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   .testimonials{grid-template-columns:1fr!important}
   .scheduler{grid-template-columns:1fr!important}
   .days button,.days span{height:42px!important}
+}
+
+/* ===== QA pass 3: remaining High/Critical Figma fidelity ===== */
+
+/* Restore section-specific rhythm instead of one flattened 88px stack */
+.section-problems{padding:96px 0 72px!important}
+.turquoise-section{
+  padding:108px 0 80px!important;
+}
+.turquoise-section h2{font-size:clamp(36px,3.6vw,54px)!important}
+.turquoise-section .lead{margin-top:28px!important}
+.solutions-grid{gap:26px!important;margin-top:48px!important}
+.solution-card img{height:148px!important;padding:26px!important}
+.solution-card h3{height:56px!important;font-size:20px!important}
+.solutions-note{margin:48px 0 0!important;font-size:24px!important}
+.turquoise-section+.grid-bg{
+  padding-top:80px!important;
+  padding-bottom:72px!important;
+}
+
+/* Matrix: larger rounded card with room for axis labels */
+@media(min-width:601px){
+  .position-card{
+    width:min(820px,52vw)!important;
+    margin:72px auto 108px!important;
+    overflow:visible!important;
+  }
+}
+
+/* Lead-to-Deal: one locked composition (path + nodes + numbers) */
+@media(min-width:601px){
+  .timeline,
+  .journey-timeline{
+    direction:ltr;
+    position:relative!important;
+    width:min(920px,100%)!important;
+    height:1040px!important;
+    transform:none!important;
+    margin:40px auto 32px!important;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 330 720%27%3E%3Cpath d=%27M250 0V75Q250 120 205 120H80Q40 120 40 160V245Q40 290 85 290H245Q290 290 290 335V405Q290 450 245 450H85Q40 450 40 495V565Q40 610 85 610H245Q290 610 290 655V720%27 fill=%27none%27 stroke=%27white%27 stroke-width=%274%27 stroke-linecap=%27round%27/%3E%3C/svg%3E")!important;
+    background-size:500px 1000px!important;
+    background-position:center 20px!important;
+    background-repeat:no-repeat!important;
+  }
+  .timeline-line{display:none!important}
+  .timeline article,
+  .journey-timeline article{
+    position:absolute!important;
+    left:0!important;
+    width:100%!important;
+    height:120px!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    display:grid!important;
+    align-items:center!important;
+    gap:14px!important;
+    z-index:2!important;
+  }
+  .timeline article img,
+  .timeline article div,
+  .journey-timeline article img,
+  .journey-timeline article div{
+    transform:none!important;
+  }
+  .timeline article b,
+  .journey-timeline article b{
+    font-size:84px!important;
+    font-weight:300!important;
+    letter-spacing:-0.06em!important;
+    line-height:1!important;
+    color:#fff!important;
+    opacity:1!important;
+  }
+  .timeline article img,
+  .journey-timeline article img{
+    width:64px!important;
+    height:64px!important;
+    object-fit:contain!important;
+  }
+  .timeline article h3,
+  .journey-timeline article h3{
+    font-size:24px!important;
+    font-weight:800!important;
+    white-space:nowrap!important;
+    margin:0 0 6px!important;
+  }
+  .timeline article p,
+  .journey-timeline article p{
+    font-size:14px!important;
+    white-space:nowrap!important;
+    margin:0!important;
+  }
+  .timeline article:nth-of-type(1),
+  .journey-timeline article:nth-of-type(1){
+    top:132px!important;
+    grid-template-columns:150px 72px 1fr!important;
+    text-align:left!important;
+  }
+  .timeline article:nth-of-type(2),
+  .journey-timeline article:nth-of-type(2){
+    top:368px!important;
+    grid-template-columns:1fr 72px 150px!important;
+    text-align:right!important;
+  }
+  .timeline article:nth-of-type(3),
+  .journey-timeline article:nth-of-type(3){
+    top:590px!important;
+    grid-template-columns:150px 72px 1fr!important;
+    text-align:left!important;
+  }
+  .timeline article:nth-of-type(4),
+  .journey-timeline article:nth-of-type(4){
+    top:812px!important;
+    grid-template-columns:1fr 72px 150px!important;
+    text-align:right!important;
+  }
+  .timeline article:nth-of-type(odd) b,
+  .journey-timeline article:nth-of-type(odd) b{grid-column:1!important;grid-row:1!important}
+  .timeline article:nth-of-type(odd) img,
+  .journey-timeline article:nth-of-type(odd) img{grid-column:2!important;grid-row:1!important}
+  .timeline article:nth-of-type(odd) div,
+  .journey-timeline article:nth-of-type(odd) div{grid-column:3!important;grid-row:1!important;text-align:left!important}
+  .timeline article:nth-of-type(even) div,
+  .journey-timeline article:nth-of-type(even) div{grid-column:1!important;grid-row:1!important;text-align:right!important}
+  .timeline article:nth-of-type(even) img,
+  .journey-timeline article:nth-of-type(even) img{grid-column:2!important;grid-row:1!important}
+  .timeline article:nth-of-type(even) b,
+  .journey-timeline article:nth-of-type(even) b{grid-column:3!important;grid-row:1!important}
+  .timeline article::after,
+  .journey-timeline article::after{
+    content:""!important;
+    position:absolute!important;
+    width:20px!important;
+    height:20px!important;
+    border:3px solid #fff!important;
+    border-radius:50%!important;
+    background:#08b9b5!important;
+    top:50%!important;
+    transform:translateY(-50%)!important;
+  }
+  .timeline article:nth-of-type(odd)::after,
+  .journey-timeline article:nth-of-type(odd)::after{
+    left:270px!important;
+    right:auto!important;
+  }
+  .timeline article:nth-of-type(even)::after,
+  .journey-timeline article:nth-of-type(even)::after{
+    right:270px!important;
+    left:auto!important;
+  }
+  .timeline::after,
+  .journey-timeline::after{
+    content:""!important;
+    position:absolute!important;
+    z-index:3!important;
+    top:8px!important;
+    left:calc(50% + 86px)!important;
+    width:20px!important;
+    height:20px!important;
+    border:3px solid #fff!important;
+    border-radius:50%!important;
+    background:#08b9b5!important;
+  }
+}
+html[dir="rtl"] .timeline article:nth-of-type(odd) div,
+html[dir="rtl"] .journey-timeline article:nth-of-type(odd) div{text-align:right!important}
+html[dir="rtl"] .timeline article:nth-of-type(even) div,
+html[dir="rtl"] .journey-timeline article:nth-of-type(even) div{text-align:left!important}
+html[dir="rtl"] .timeline article h3,
+html[dir="rtl"] .timeline article p,
+html[dir="rtl"] .journey-timeline article h3,
+html[dir="rtl"] .journey-timeline article p{white-space:normal!important}
+
+/* Testimonials: restore Figma card, not a centered redesign */
+.testimonials{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:22px!important;
+  margin-top:40px!important;
+}
+.testimonials article{
+  text-align:start!important;
+  background:#020707!important;
+  border:2px solid #08b9b5!important;
+  border-radius:18px!important;
+  padding:28px 24px 22px!important;
+}
+.testimonials article p{
+  font-size:17px!important;
+  font-weight:700!important;
+  line-height:1.45!important;
+  margin:0!important;
+  text-align:start!important;
+}
+.testimonials .testimonial-meta,
+.testimonials article>div{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:14px!important;
+  margin-top:22px!important;
+}
+.testimonials span{display:grid!important;gap:4px;text-align:start!important}
+.avatar{
+  width:48px!important;
+  height:48px!important;
+  border-radius:50%!important;
+  background:#08b9b5!important;
+  color:#fff!important;
+  display:grid!important;
+  place-items:center!important;
+  flex:0 0 auto;
+  font-weight:800;
+}
+.testimonials i{color:#ffd600!important;font-style:normal!important;letter-spacing:2px;font-size:14px}
+.testimonials small{color:#cfcfcf!important;font-size:13px}
+
+/* Bottom CTA: one locked laptop+phone composition */
+.cta .container.split,
+.about-cta .container.split{
+  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)!important;
+  align-items:center!important;
+  gap:40px!important;
+}
+.cta .actions,
+.about-cta .actions,
+.features-cta .actions,
+.left-actions{
+  width:min(480px,100%)!important;
+  margin-inline:0!important;
+  justify-content:flex-start!important;
+}
+.cta-devices,
+.cta .cta-devices,
+.cta-inner .cta-devices,
+.features-cta .cta-devices,
+.about-cta .cta-devices{
+  position:relative!important;
+  min-height:420px!important;
+  max-width:640px!important;
+  width:100%!important;
+}
+.cta-devices img:first-child,
+.cta .cta-devices img:first-child,
+.cta-inner .cta-devices img:first-child,
+.features-cta .cta-devices img:first-child,
+.about-cta .cta-devices img:first-child{
+  width:82%!important;
+  max-width:520px!important;
+  top:16px!important;
+  right:0!important;
+  left:auto!important;
+}
+.cta-devices img:last-child,
+.cta .cta-devices img:last-child,
+.cta-inner .cta-devices img:last-child,
+.features-cta .cta-devices img:last-child,
+.about-cta .cta-devices img:last-child{
+  width:28%!important;
+  max-width:176px!important;
+  left:0!important;
+  right:auto!important;
+  bottom:8px!important;
+}
+html[dir="rtl"] .cta-devices img:first-child,
+html[dir="rtl"] .cta .cta-devices img:first-child,
+html[dir="rtl"] .cta-inner .cta-devices img:first-child,
+html[dir="rtl"] .features-cta .cta-devices img:first-child,
+html[dir="rtl"] .about-cta .cta-devices img:first-child{
+  right:auto!important;left:0!important;
+}
+html[dir="rtl"] .cta-devices img:last-child,
+html[dir="rtl"] .cta .cta-devices img:last-child,
+html[dir="rtl"] .cta-inner .cta-devices img:last-child,
+html[dir="rtl"] .features-cta .cta-devices img:last-child,
+html[dir="rtl"] .about-cta .cta-devices img:last-child{
+  left:auto!important;right:0!important;
+}
+.features-cta .cta-devices{max-width:580px!important;min-height:380px!important}
+.features-cta .cta-devices img:first-child{max-width:460px!important}
+.features-cta .cta-devices img:last-child{max-width:150px!important}
+
+/* Features: equal media width + even row pitch */
+.feature-showcase{padding:12px 0 40px!important}
+.feature-row{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  min-height:500px!important;
+  padding:56px 0!important;
+  gap:48px!important;
+  align-items:center!important;
+}
+.feature-copy{text-align:start!important}
+.feature-row .feature-media,
+.feature-row>img.feature-media{
+  width:100%!important;
+  max-width:600px!important;
+  height:auto!important;
+  max-height:none!important;
+}
+.features-cta .container.feature-row{
+  min-height:420px!important;
+  padding:64px 0 40px!important;
+}
+
+/* About: purpose band + team/problem tokens */
+.purpose-section{
+  background:linear-gradient(180deg,#0bbab6 0%,#078e8b 36%,#003b3a 70%,#020707 100%)!important;
+  padding:100px 0 90px!important;
+  color:#fff!important;
+}
+.purpose-section h2{color:#fff!important}
+.purpose-section h2 span{color:#021414!important}
+.purpose-section>div>p{color:#fff!important;font-weight:700}
+.purpose-grid article{border-radius:16px!important;overflow:hidden}
+.purpose-grid img{height:156px!important;background:#000!important;padding:20px!important}
+.purpose-grid b{background:#08b9b5!important;color:#fff!important;padding:16px 10px!important}
+.team-cards img{
+  background:#08b9b5!important;
+  height:180px!important;
+  padding:18px 22px!important;
+}
+.team-cards b{background:#000!important;color:#fff!important}
+.about-problem-grid img{height:148px!important;padding:18px!important}
+
+/* Start Trial: Figma field tokens (pill inputs, section bars) */
+.trial-section{
+  border:1px solid #1a5c5c!important;
+  border-radius:16px!important;
+}
+.trial-section>h2{
+  padding:22px 32px!important;
+  font-size:18px!important;
+  background:linear-gradient(180deg,#08b9b5,#023b3a)!important;
+}
+.user-types{
+  padding:28px 16px!important;
+  background:linear-gradient(180deg,#06302f,#001010)!important;
+}
+.user-types label{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:18px!important;
+  font-weight:700;
+}
+.user-types input{
+  width:22px!important;
+  height:22px!important;
+  margin:0!important;
+}
+.trial-fields{padding:32px 28px!important;gap:22px!important}
+.trial-fields label{
+  border:1px solid #7a7a7a!important;
+  border-radius:16px!important;
+  padding:22px 22px!important;
+}
+.trial-fields input:not([type=file]),
+.trial-phone{
+  height:52px!important;
+  border-radius:24px!important;
+}
+.file-drop{min-height:148px!important;border-radius:16px!important}
+.trial-submit{
+  width:100%!important;
+  height:62px!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  color:#111!important;
+  font-weight:800!important;
+}
+
+/* Book Demo: booking block density + calendar/slots/form scale */
+.demo-benefits{
+  width:100%!important;
+  max-width:none!important;
+  padding:22px 32px 20px!important;
+  margin:0 0 36px!important;
+  border-radius:18px!important;
+}
+.demo-booking{width:100%!important;max-width:none!important}
+.calendar{direction:ltr}
+.scheduler{
+  grid-template-columns:minmax(0,2.15fr) minmax(300px,1fr)!important;
+  gap:32px!important;
+  align-items:stretch!important;
+}
+.calendar{padding:36px 36px 28px!important;border-radius:20px!important}
+.days button,.days span{height:58px!important;border-radius:8px!important}
+.slots{display:flex!important;flex-direction:column!important;gap:14px!important}
+.slots button{height:66px!important;border-radius:16px!important;font-size:17px!important}
+.booking-details{
+  width:100%!important;
+  max-width:none!important;
+  padding:32px!important;
+  margin-top:24px!important;
+  gap:22px!important;
+  border-radius:18px!important;
+}
+.booking-details input{height:56px!important;border-radius:14px!important}
+.confirm-booking{
+  width:100%!important;
+  display:block!important;
+  height:64px!important;
+  border-radius:16px!important;
+  margin-top:22px!important;
+}
+
+/* Footer: tighter Figma vertical padding */
+.site-footer,footer.site-footer,footer{padding:32px 0 16px!important}
+
+@media(max-width:800px){
+  .testimonials{grid-template-columns:1fr!important}
+  .scheduler{grid-template-columns:1fr!important}
+  .days button,.days span{height:42px!important}
+  .cta-devices,.cta .cta-devices,.features-cta .cta-devices,.about-cta .cta-devices{
+    min-height:280px!important;
+  }
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary, localePath } from "@/lib/i18n";
 
@@ -87,6 +87,11 @@ export function TrialForm({ locale = "en" }: { locale?: Locale }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
+
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("type");
+    if (requested === "individual" || requested === "company") setType(requested);
+  }, []);
   const [message, setMessage] = useState("");
 
   async function submit(event: FormEvent<HTMLFormElement>) {

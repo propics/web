@@ -147,7 +147,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <br />
             <span>{h.journeyTitleHighlight}</span>
           </h2>
-          <div className="timeline">
+          <div className="timeline journey-timeline">
             <img className="timeline-line" src="/assets/timeline-path.png" alt="" />
             {h.journeySteps.map((step, i) => (
               <article key={step.title}>
