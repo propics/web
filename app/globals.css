@@ -2125,3 +2125,25 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     min-height:280px!important;
   }
 }
+
+/* ===== Header clearance: restore space under the fixed teal nav =====
+   QA pass 2 set .hero/.features-hero/.about-hero padding-top to 72–80px,
+   which sits under .site-header (position:fixed). Do not redesign — only
+   push first-section titles below the bar, EN+AR. */
+:root{
+  --header-offset: 176px;
+}
+.hero,
+.page-hero,
+.about-hero,
+.features-hero,
+.demo-hero,
+.contact-hero,
+.trial-page,
+.empty-state,
+main > section:first-of-type{
+  padding-top: var(--header-offset) !important;
+}
+@media (max-width: 600px){
+  :root{ --header-offset: 132px; }
+}
