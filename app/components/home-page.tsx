@@ -59,7 +59,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section grid-bg">
+      <section className="section section-problems grid-bg">
         <div className="container split">
           <div>
             <h2>
@@ -141,7 +141,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <section className="section grid-bg centered">
-        <div className="container narrow">
+        <div className="container">
           <h2>
             {h.journeyTitle}
             <br />
@@ -188,10 +188,8 @@ export function HomePage({ locale }: { locale: Locale }) {
               {[0, 1, 2].map((i) => (
                 <article key={i}>
                   <p>“{h.testimonial}”</p>
-                  <div>
-                    <b className="avatar">
-                      {h.testimonialName.charAt(0)}
-                    </b>
+                  <div className="testimonial-meta">
+                    <b className="avatar">{h.testimonialName.charAt(0)}</b>
                     <span>
                       <i>★★★★★</i>
                       <small>

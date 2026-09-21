@@ -1,23 +1,23 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary, localePath } from "@/lib/i18n";
-import { Footer, Header } from "./site-shell";
+import { Footer, Header, WhatsAppFab } from "./site-shell";
 
 const teamIcons = [
-  "/assets/solution-projects.png",
-  "/assets/solution-brokers.png",
-  "/assets/solution-sales.png",
+  "/assets/about-developers.png",
+  "/assets/about-brokers.png",
+  "/assets/about-sales-teams.png",
 ];
 const problemIcons = [
   "/assets/pain-leads-v2.png",
-  "/assets/solution-crm.png",
-  "/assets/pain-followups-v2.png",
+  "/assets/about-problem-confused.png",
+  "/assets/about-problem-calendar.png",
 ];
 const purposeIcons = [
-  "/assets/solution-crm.png",
-  "/assets/solution-projects.png",
-  "/assets/solution-brokers.png",
-  "/assets/pain-followups-v2.png",
+  "/assets/about-purpose-leads.png",
+  "/assets/about-purpose-units.png",
+  "/assets/about-purpose-lifecycle.png",
+  "/assets/about-purpose-progress.png",
 ];
 
 export function AboutPage({ locale }: { locale: Locale }) {
@@ -43,7 +43,11 @@ export function AboutPage({ locale }: { locale: Locale }) {
               {t.common.chatWhatsapp}
             </a>
           </div>
-          <img src="/assets/propics-dashboard.webp" alt="Propics Dashboard" />
+          <img
+            className="hero-product"
+            src="/assets/propics-dashboard.webp"
+            alt="Propics Dashboard"
+          />
         </div>
       </section>
 
@@ -162,6 +166,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+      <WhatsAppFab />
       <Footer locale={locale} />
     </main>
   );

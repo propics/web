@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 import { BookingForm } from "./booking-form";
-import { Footer, Header } from "./site-shell";
+import { Footer, Header, WhatsAppFab } from "./site-shell";
 
 export function BookDemoPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -33,6 +33,7 @@ export function BookDemoPage({ locale }: { locale: Locale }) {
           <BookingForm locale={locale} />
         </div>
       </section>
+      <WhatsAppFab />
       <Footer locale={locale} />
     </main>
   );

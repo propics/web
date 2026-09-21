@@ -1,9 +1,8 @@
-import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
-import { getDictionary, localePath } from "@/lib/i18n";
-import { BookingForm } from "./booking-form";
+import { getDictionary } from "@/lib/i18n";
 import { ContactForm } from "./contact-form";
-import { Footer, Header } from "./site-shell";
+import { Footer, Header, WhatsAppFab } from "./site-shell";
+import { TrialForm } from "./trial-form";
 
 export function BlogPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -75,38 +74,15 @@ export function ContactPage({ locale }: { locale: Locale }) {
 }
 
 export function TrialPage({ locale }: { locale: Locale }) {
-  const t = getDictionary(locale);
-  const p = (path = "") => localePath(locale, path);
   return (
     <main>
       <Header locale={locale} />
-      <section className="page-hero grid-bg">
+      <section className="trial-page grid-bg">
         <div className="container">
-          <p className="eyebrow">{t.trial.eyebrow}</p>
-          <h1>
-            {t.trial.title} <span>{t.trial.titleHighlight}</span>
-          </h1>
-          <p>{t.trial.lead}</p>
+          <TrialForm locale={locale} />
         </div>
       </section>
-      <section className="content-section grid-bg">
-        <div className="container form-layout">
-          <div className="info-card">
-            <h2>{t.trial.infoTitle}</h2>
-            <ul>
-              {t.trial.infoItems.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <div className="actions" style={{ marginTop: 24 }}>
-              <Link className="button primary" href={p("book-demo")}>
-                {t.common.bookDemo}
-              </Link>
-            </div>
-          </div>
-          <BookingForm locale={locale} />
-        </div>
-      </section>
+      <WhatsAppFab />
       <Footer locale={locale} />
     </main>
   );

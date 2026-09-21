@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary, localePath } from "@/lib/i18n";
-import { Footer, Header } from "./site-shell";
+import { Footer, Header, WhatsAppFab } from "./site-shell";
 
 export function FeaturesPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -54,7 +54,11 @@ export function FeaturesPage({ locale }: { locale: Locale }) {
                   ))}
                 </ul>
               </div>
-              <img src={item.image} alt={`${item.title} ${item.titleHighlight}`} />
+              <img
+                className="feature-media"
+                src={item.image}
+                alt={`${item.title} ${item.titleHighlight}`}
+              />
             </article>
           ))}
         </div>
@@ -82,6 +86,7 @@ export function FeaturesPage({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+      <WhatsAppFab />
       <Footer locale={locale} />
     </main>
   );
