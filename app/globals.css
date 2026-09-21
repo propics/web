@@ -1965,7 +1965,7 @@ html[dir="rtl"] .journey-timeline article p{white-space:normal!important}
   height:78%!important;
   max-height:280px!important;
   max-width:132px!important;
-  left:12%!important;
+  left:26%!important;
   right:auto!important;
   bottom:0!important;
 }
@@ -1981,7 +1981,7 @@ html[dir="rtl"] .cta .cta-devices img:last-child,
 html[dir="rtl"] .cta-inner .cta-devices img:last-child,
 html[dir="rtl"] .features-cta .cta-devices img:last-child,
 html[dir="rtl"] .about-cta .cta-devices img:last-child{
-  left:auto!important;right:0!important;
+  left:auto!important;right:26%!important;
 }
 .features-cta .cta-devices{max-width:560px!important;min-height:340px!important}
 .features-cta .cta-devices img:first-child{max-width:440px!important}
