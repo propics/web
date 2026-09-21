@@ -2147,3 +2147,131 @@ main > section:first-of-type{
 @media (max-width: 600px){
   :root{ --header-offset: 132px; }
 }
+
+/* ===== QA pass 3 residual: shared scale tokens at ~1440 Figma width ===== */
+:root{
+  --hero-media: min(1200px, 94%);
+  --hero-heading: min(1320px, 100%);
+  --hero-actions: min(520px, 100%);
+  --matrix-size: min(720px, 50vw);
+  --feature-media: 580px;
+  --feature-row-pad: 52px;
+  --cta-devices-max: 500px;
+  --cta-phone-max: 118px;
+}
+.hero h1,
+.features-hero h1,
+.about-hero h1,
+.demo-hero h1{
+  max-width: var(--hero-heading) !important;
+}
+.features-hero h1{
+  font-size: clamp(38px, 3.55vw, 54px) !important;
+  line-height: 1.18 !important;
+}
+.hero-product,
+.features-hero-image,
+.about-hero .hero-product{
+  width: var(--hero-media) !important;
+  margin-inline: auto !important;
+  margin-top: 28px !important;
+}
+.hero .actions,
+.features-hero .actions,
+.about-hero .actions{
+  width: var(--hero-actions) !important;
+  gap: 16px !important;
+}
+
+@media (min-width: 601px){
+  .position-card{
+    width: var(--matrix-size) !important;
+    margin: 64px auto 96px !important;
+  }
+  .timeline,
+  .journey-timeline{
+    width: min(980px, 100%) !important;
+    height: 1100px !important;
+    background-size: 540px 1060px !important;
+  }
+  .timeline article b,
+  .journey-timeline article b{font-size: 92px !important}
+  .timeline article:nth-of-type(1),
+  .journey-timeline article:nth-of-type(1){top: 148px !important}
+  .timeline article:nth-of-type(2),
+  .journey-timeline article:nth-of-type(2){top: 392px !important}
+  .timeline article:nth-of-type(3),
+  .journey-timeline article:nth-of-type(3){top: 628px !important}
+  .timeline article:nth-of-type(4),
+  .journey-timeline article:nth-of-type(4){top: 864px !important}
+  .timeline article:nth-of-type(odd)::after,
+  .journey-timeline article:nth-of-type(odd)::after{left: 288px !important}
+  .timeline article:nth-of-type(even)::after,
+  .journey-timeline article:nth-of-type(even)::after{right: 288px !important}
+  .timeline::after,
+  .journey-timeline::after{left: calc(50% + 92px) !important}
+}
+
+.turquoise-section{padding: 100px 0 72px !important}
+.solutions-grid{gap: 24px !important; margin-top: 40px !important}
+.solution-card img{height: 136px !important}
+
+.feature-row{
+  padding: var(--feature-row-pad) 0 !important;
+  min-height: 480px !important;
+  gap: 40px !important;
+}
+.feature-row .feature-media,
+.feature-row > img.feature-media{
+  max-width: var(--feature-media) !important;
+  width: 100% !important;
+}
+
+.cta-devices,
+.cta .cta-devices,
+.cta-inner .cta-devices,
+.about-cta .cta-devices{
+  max-width: var(--cta-devices-max) !important;
+  min-height: 320px !important;
+}
+.cta-devices img:first-child,
+.cta .cta-devices img:first-child,
+.cta-inner .cta-devices img:first-child,
+.about-cta .cta-devices img:first-child{
+  max-width: 400px !important;
+}
+.cta-devices img:last-child,
+.cta .cta-devices img:last-child,
+.cta-inner .cta-devices img:last-child,
+.about-cta .cta-devices img:last-child{
+  max-width: var(--cta-phone-max) !important;
+  max-height: 240px !important;
+}
+.features-cta .cta-devices{
+  max-width: 440px !important;
+  min-height: 280px !important;
+}
+.features-cta .cta-devices img:first-child{max-width: 360px !important}
+.features-cta .cta-devices img:last-child{max-width: 104px !important; max-height: 210px !important}
+
+.team-cards img{height: 168px !important}
+.about-problem-grid{gap: 22px !important}
+.purpose-grid{gap: 20px !important}
+.purpose-grid img{height: 140px !important}
+
+.trial-section{border-radius: 18px !important; border: 1px solid #1a5c5c !important}
+.trial-section > h2{padding: 18px 28px !important}
+.trial-fields label{border-radius: 18px !important; border-color: #6e6e6e !important}
+.trial-fields input:not([type=file]),
+.trial-phone{height: 48px !important; border-radius: 28px !important}
+.file-drop{border-radius: 18px !important; min-height: 132px !important}
+.trial-submit{border-radius: 16px !important; height: 58px !important}
+
+.scheduler{align-items: stretch !important}
+.slots{height: 100% !important; justify-content: space-between !important}
+.slots button{flex: 1 1 auto !important; min-height: 56px !important; height: auto !important}
+.days button, .days span{height: 52px !important}
+.whatsapp{width: 58px !important; height: 58px !important; right: 36px !important; bottom: 36px !important}
+html[dir="rtl"] .whatsapp{left: 36px !important; right: auto !important}
+
+.site-footer, footer.site-footer, footer{padding: 28px 0 14px !important}
