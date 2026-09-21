@@ -14,10 +14,10 @@ const problemIcons = [
   "/assets/about-problem-missed-followups.png",
 ];
 const purposeIcons = [
-  "/assets/about-purpose-leads.png",
-  "/assets/about-purpose-units.png",
-  "/assets/about-purpose-lifecycle.png",
-  "/assets/about-purpose-progress.png",
+  "/assets/about-purpose-lead-management.png",
+  "/assets/about-purpose-unit-inventory.png",
+  "/assets/about-purpose-client-lifecycle.png",
+  "/assets/about-purpose-followups-progress.png",
 ];
 
 export function AboutPage({ locale }: { locale: Locale }) {
