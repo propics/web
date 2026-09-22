@@ -2563,8 +2563,8 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   }
   .l2d-track article.l2d-step > p{
     position: absolute !important;
-    top: 100% !important;
-    margin: 6px 0 0 !important;
+    top: 50% !important;
+    margin: 10px 0 0 !important;
     padding: 0 !important;
     width: max-content !important;
     max-width: 420px !important;
