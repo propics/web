@@ -148,7 +148,28 @@ export function HomePage({ locale }: { locale: Locale }) {
             <span>{h.journeyTitleHighlight}</span>
           </h2>
           <div className="timeline journey-timeline">
-            <img className="timeline-line" src="/assets/timeline-path.png" alt="" />
+            <svg
+              className="journey-path"
+              viewBox="0 0 980 1120"
+              preserveAspectRatio="xMidYMid meet"
+              aria-hidden="true"
+            >
+              <path
+                d="M508 44V120Q508 200 428 200H368Q288 200 288 280V370Q288 450 368 450H612Q692 450 692 530V620Q692 700 612 700H368Q288 700 288 780V870Q288 950 368 950H612Q692 950 692 1030V1110"
+                fill="none"
+                stroke="#fff"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <g fill="#08b9b5" stroke="#fff" strokeWidth="3">
+                <circle cx="508" cy="44" r="10" />
+                <circle cx="298" cy="234" r="10" />
+                <circle cx="682" cy="484" r="10" />
+                <circle cx="298" cy="734" r="10" />
+                <circle cx="682" cy="984" r="10" />
+              </g>
+            </svg>
             {h.journeySteps.map((step, i) => (
               <article key={step.title}>
                 <b>{String(i + 1).padStart(2, "0")}</b>
