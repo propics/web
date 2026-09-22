@@ -2425,3 +2425,33 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
 }
 .file-drop{border-radius: 18px !important; min-height: 128px !important}
 .trial-submit{width: 100% !important; border-radius: 16px !important; height: 58px !important}
+
+/* Testimonials: stars sit above the name, like Figma card chrome */
+.testimonials .testimonial-meta span,
+.testimonials article > div span{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+}
+.testimonials i{
+  display: block !important;
+  font-size: 15px !important;
+  line-height: 1 !important;
+  letter-spacing: 2px;
+}
+.testimonials small{display: block !important}
+
+/* Book Demo benefits height + weekday density */
+.demo-benefits{
+  padding: 40px 48px 36px !important;
+  min-height: 148px !important;
+}
+.demo-benefits span{font-size: 16px !important; font-weight: 700}
+.weekdays{margin-bottom: 12px !important}
+.weekdays b{
+  padding: 12px 4px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #08a8a4 !important;
+}
