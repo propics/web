@@ -148,34 +148,36 @@ export function HomePage({ locale }: { locale: Locale }) {
             <span>{h.journeyTitleHighlight}</span>
           </h2>
           <div className="timeline journey-timeline l2d-track">
-            {/* Compact Figma S: viewBox 980×840, inner R=52, outer R=40.
-                Elbow-dot cy values are the single source of truth for row midlines. */}
+            {/* Figma IMAGE 2 path, scale 2.5 from native 341×509 crop.
+                viewBox 1:1 with the CSS box. Inner fillets RI=40, outer RO=45,
+                long flat shelves (H2/H3/H4). Dots sit on the vertical rails at
+                the number midline — not at the corner tangent. */}
             <svg
               className="l2d-path"
-              viewBox="0 0 980 840"
+              viewBox="0 0 852 960"
               preserveAspectRatio="xMidYMid meet"
               aria-hidden="true"
             >
               <path
-                d="M505 72V148A52 52 0 0 1 453 200H340A40 40 0 0 0 300 240V326A52 52 0 0 0 352 378H640A40 40 0 0 1 680 418V506A52 52 0 0 1 628 558H340A40 40 0 0 0 300 598V686A52 52 0 0 0 352 736H640A40 40 0 0 1 680 776V810"
+                d="M439 38V133A40 40 0 0 1 399 173H295A45 45 0 0 0 250 218V340A40 40 0 0 0 290 380H555A45 45 0 0 1 600 425V548A40 40 0 0 1 560 588H295A45 45 0 0 0 250 633V758A40 40 0 0 0 290 798H555A45 45 0 0 1 600 843V932"
                 fill="none"
                 stroke="#fff"
-                strokeWidth="4"
+                strokeWidth="5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-              <g fill="#08b9b5" stroke="#fff" strokeWidth="3">
-                <circle cx="505" cy="72" r="10" />
-                <circle cx="300" cy="240" r="10" />
-                <circle cx="680" cy="418" r="10" />
-                <circle cx="300" cy="598" r="10" />
-                <circle cx="680" cy="776" r="10" />
+              <g fill="#08b9b5" stroke="#fff" strokeWidth="3.5">
+                <circle cx="439" cy="38" r="16" />
+                <circle cx="250" cy="275" r="16" />
+                <circle cx="600" cy="483" r="16" />
+                <circle cx="250" cy="693" r="16" />
+                <circle cx="600" cy="900" r="16" />
               </g>
             </svg>
             {h.journeySteps.map((step, i) => (
               <article
                 key={step.title}
-                style={{ top: [240, 418, 598, 776][i] }}
+                style={{ top: [275, 483, 693, 900][i] }}
               >
                 <b>{String(i + 1).padStart(2, "0")}</b>
                 <img src={stepIcons[i]} alt="" />
