@@ -2521,8 +2521,8 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   }
   .timeline article img,
   .journey-timeline article img{
-    width: 52px !important;
-    height: 52px !important;
+    width: 56px !important;
+    height: 56px !important;
     object-fit: contain !important;
     z-index: 3 !important;
   }
@@ -2557,17 +2557,17 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
 
   /* Article midpoint = elbow-dot Y in the 1120 SVG. */
   .timeline article:nth-of-type(1),
-  .journey-timeline article:nth-of-type(1){top: 184px !important}
+  .journey-timeline article:nth-of-type(1){top: 170px !important}
   .timeline article:nth-of-type(2),
-  .journey-timeline article:nth-of-type(2){top: 434px !important}
+  .journey-timeline article:nth-of-type(2){top: 420px !important}
   .timeline article:nth-of-type(3),
-  .journey-timeline article:nth-of-type(3){top: 684px !important}
+  .journey-timeline article:nth-of-type(3){top: 670px !important}
   .timeline article:nth-of-type(4),
-  .journey-timeline article:nth-of-type(4){top: 934px !important}
+  .journey-timeline article:nth-of-type(4){top: 920px !important}
 
   .timeline article:nth-of-type(odd),
   .journey-timeline article:nth-of-type(odd){
-    grid-template-columns: 240px 80px 52px 12px max-content minmax(0,1fr) !important;
+    grid-template-columns: 230px 96px 56px 10px max-content minmax(0,1fr) !important;
     text-align: left !important;
   }
   .timeline article:nth-of-type(odd) b,
@@ -2592,7 +2592,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
 
   .timeline article:nth-of-type(even),
   .journey-timeline article:nth-of-type(even){
-    grid-template-columns: minmax(0,1fr) max-content 12px 52px 80px 240px !important;
+    grid-template-columns: minmax(0,1fr) max-content 10px 56px 96px 230px !important;
     text-align: right !important;
   }
   .timeline article:nth-of-type(even) div,

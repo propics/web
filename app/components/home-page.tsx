@@ -164,10 +164,10 @@ export function HomePage({ locale }: { locale: Locale }) {
               />
               <g fill="#08b9b5" stroke="#fff" strokeWidth="3">
                 <circle cx="508" cy="44" r="10" />
-                <circle cx="298" cy="234" r="10" />
-                <circle cx="682" cy="484" r="10" />
-                <circle cx="298" cy="734" r="10" />
-                <circle cx="682" cy="984" r="10" />
+                <circle cx="304" cy="220" r="10" />
+                <circle cx="676" cy="470" r="10" />
+                <circle cx="304" cy="720" r="10" />
+                <circle cx="676" cy="970" r="10" />
               </g>
             </svg>
             {h.journeySteps.map((step, i) => (
