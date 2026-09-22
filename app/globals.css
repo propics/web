@@ -2457,9 +2457,11 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
 }
 
 /* Lead-to-Deal: single SVG source of truth (.l2d-track).
-   Figma IMAGE 2 geometry ×2.5 (852×960). Article top = circle cy;
-   translateY(-50%) puts number/icon/title on that midline. Description
-   hangs under the title. LTR snake in AR — only copy dir/align flips. */
+   Figma IMAGE 2 geometry ×2.5 (852×960). Article top = circle cy.
+   Flex/grid row aligns ONLY [number | gutter | icon | title].
+   Description is position:absolute on the article so it cannot shift
+   the title. Optical nudges: Arial digits sit high in the em-box
+   (shift down); Cairo title glyphs sit low (shift up). */
 @media (min-width: 601px){
   .l2d-track.timeline,
   .l2d-track.journey-timeline,
@@ -2518,127 +2520,132 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   .l2d-track article:nth-of-type(3){top: 693px !important}
   .l2d-track.journey-timeline article:nth-of-type(4),
   .l2d-track article:nth-of-type(4){top: 900px !important}
-  .l2d-track article img,
-  .l2d-track article div,
-  .l2d-track article:nth-of-type(odd) img,
-  .l2d-track article:nth-of-type(odd) div,
-  .l2d-track article:nth-of-type(even) img,
-  .l2d-track article:nth-of-type(even) div{
-    transform: none !important;
-    top: auto !important;
+
+  /* Row items: number, icon, title. Description is out of flow. */
+  .l2d-track article > b,
+  .l2d-track article > img,
+  .l2d-track article > h3{
+    grid-row: 1 !important;
+    align-self: center !important;
     margin: 0 !important;
-    padding-top: 0 !important;
   }
   .l2d-track article b{
     font-size: 108px !important;
     font-weight: 300 !important;
     letter-spacing: -0.07em !important;
-    line-height: 0.68 !important;
+    line-height: 80px !important;
     color: #fff !important;
-    display: flex !important;
-    align-items: center !important;
-    height: 74px !important;
+    display: block !important;
+    height: 80px !important;
+    /* Arial digits sit high in the em-box — shift the ink down. */
+    padding: 12px 0 0 !important;
+    box-sizing: border-box !important;
   }
   .l2d-track article img{
     width: 68px !important;
     height: 68px !important;
     object-fit: contain !important;
     z-index: 3 !important;
-    align-self: center !important;
-  }
-  .l2d-track article div{
-    position: relative !important;
+    /* Kill leftover translateX(55px); slight optical drop. */
+    transform: translateY(4px) !important;
     top: auto !important;
-    max-width: 420px !important;
-    align-self: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
   }
   .l2d-track article h3{
     font-size: 28px !important;
     font-weight: 800 !important;
     color: #08b9b5 !important;
     white-space: nowrap !important;
-    margin: 0 !important;
     line-height: 1 !important;
-    display: flex !important;
-    align-items: center !important;
-    height: 28px !important;
+    height: auto !important;
+    padding: 0 !important;
+    display: block !important;
+    /* Cairo cap-center sits below the em midline — shift ink up. */
+    transform: translateY(-11px) !important;
+    max-width: 420px !important;
   }
+  /* Description: out of flow on the article, under the title. */
   .l2d-track article p{
     position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: calc(100% + 6px) !important;
+    top: calc(50% + 14px) !important;
+    width: max-content !important;
+    max-width: 420px !important;
     font-size: 15px !important;
     font-weight: 600 !important;
     color: #fff !important;
     white-space: nowrap !important;
     margin: 0 !important;
+    padding: 0 !important;
     line-height: 1.25 !important;
+    transform: none !important;
+    height: auto !important;
   }
 
-  /* Odd: number LEFT — rail/dot@250 — icon + title RIGHT.
-     210 + 70 = 280; icon starts ~12px past the stroke. */
+  /* Odd: number LEFT with Figma breathing room — rail/dot@250 — icon + title.
+     Number col 168 → ~82px to the rail. Icon at 280, ~12px past the stroke. */
   .l2d-track.journey-timeline article:nth-of-type(odd),
   .l2d-track article:nth-of-type(odd){
-    grid-template-columns: 210px 70px 68px 6px max-content minmax(0,1fr) !important;
+    grid-template-columns: 168px 112px 68px 8px max-content minmax(0,1fr) !important;
     text-align: left !important;
   }
   .l2d-track.journey-timeline article:nth-of-type(odd) b,
   .l2d-track article:nth-of-type(odd) b{
     grid-column: 1 !important;
-    grid-row: 1 !important;
     justify-self: end !important;
     padding-right: 0 !important;
   }
   .l2d-track.journey-timeline article:nth-of-type(odd) img,
   .l2d-track article:nth-of-type(odd) img{
     grid-column: 3 !important;
-    grid-row: 1 !important;
     justify-self: start !important;
   }
-  .l2d-track.journey-timeline article:nth-of-type(odd) div,
-  .l2d-track article:nth-of-type(odd) div{
+  .l2d-track.journey-timeline article:nth-of-type(odd) h3,
+  .l2d-track article:nth-of-type(odd) h3{
     grid-column: 5 !important;
-    grid-row: 1 !important;
+    text-align: left !important;
+  }
+  .l2d-track article:nth-of-type(odd) p{
+    left: 356px !important;
+    right: auto !important;
     text-align: left !important;
   }
 
-  /* Even: title + icon LEFT — rail/dot@600 — number RIGHT. */
+  /* Even: title + icon LEFT — rail/dot@600 — number RIGHT with breathing room. */
   .l2d-track.journey-timeline article:nth-of-type(even),
   .l2d-track article:nth-of-type(even){
-    grid-template-columns: minmax(0,1fr) max-content 6px 68px 70px 210px !important;
+    grid-template-columns: minmax(0,1fr) max-content 8px 68px 112px 168px !important;
     text-align: right !important;
   }
-  .l2d-track.journey-timeline article:nth-of-type(even) div,
-  .l2d-track article:nth-of-type(even) div{
+  .l2d-track.journey-timeline article:nth-of-type(even) h3,
+  .l2d-track article:nth-of-type(even) h3{
     grid-column: 2 !important;
-    grid-row: 1 !important;
     text-align: right !important;
   }
   .l2d-track.journey-timeline article:nth-of-type(even) img,
   .l2d-track article:nth-of-type(even) img{
     grid-column: 4 !important;
-    grid-row: 1 !important;
     justify-self: end !important;
   }
   .l2d-track.journey-timeline article:nth-of-type(even) b,
   .l2d-track article:nth-of-type(even) b{
     grid-column: 6 !important;
-    grid-row: 1 !important;
     justify-self: start !important;
     padding-left: 0 !important;
   }
+  .l2d-track article:nth-of-type(even) p{
+    right: 356px !important;
+    left: auto !important;
+    text-align: right !important;
+  }
 }
-html[dir="rtl"] .l2d-track article:nth-of-type(odd) div{
+html[dir="rtl"] .l2d-track article:nth-of-type(odd) h3,
+html[dir="rtl"] .l2d-track article:nth-of-type(odd) p{
   text-align: right !important;
   direction: rtl !important;
 }
-html[dir="rtl"] .l2d-track article:nth-of-type(even) div{
+html[dir="rtl"] .l2d-track article:nth-of-type(even) h3,
+html[dir="rtl"] .l2d-track article:nth-of-type(even) p{
   text-align: left !important;
   direction: rtl !important;
 }
 html[dir="rtl"] .l2d-track article h3,
-html[dir="rtl"] .l2d-track article p{white-space: normal !important}
+html[dir="rtl"] .l2d-track article p{white-space: nowrap !important}

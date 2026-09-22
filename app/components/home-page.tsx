@@ -181,10 +181,8 @@ export function HomePage({ locale }: { locale: Locale }) {
               >
                 <b>{String(i + 1).padStart(2, "0")}</b>
                 <img src={stepIcons[i]} alt="" />
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.desc}</p>
-                </div>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
               </article>
             ))}
           </div>
