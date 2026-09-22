@@ -2268,10 +2268,160 @@ main > section:first-of-type{
 .trial-submit{border-radius: 16px !important; height: 58px !important}
 
 .scheduler{align-items: stretch !important}
-.slots{height: 100% !important; justify-content: space-between !important}
-.slots button{flex: 1 1 auto !important; min-height: 56px !important; height: auto !important}
-.days button, .days span{height: 52px !important}
+.slots{height: 100% !important; justify-content: space-between !important; gap: 16px !important}
+.slots button{flex: 1 1 auto !important; min-height: 64px !important; height: auto !important; border-radius: 16px !important}
+.days button, .days span{height: 62px !important; border-radius: 10px !important}
 .whatsapp{width: 58px !important; height: 58px !important; right: 36px !important; bottom: 36px !important}
 html[dir="rtl"] .whatsapp{left: 36px !important; right: auto !important}
 
 .site-footer, footer.site-footer, footer{padding: 28px 0 14px !important}
+
+/* ===== QA pass 3 close: leftover High chrome at ~1440 ===== */
+:root{
+  --hero-media: min(1240px, 96%);
+  --hero-actions: min(560px, 100%);
+  --matrix-size: min(760px, 54vw);
+  --feature-media: 580px;
+  --feature-row-pad: 56px;
+  --cta-devices-max: 480px;
+  --cta-phone-max: 112px;
+  --team-plate: 200px;
+}
+
+.hero-product,
+.features-hero-image,
+.about-hero .hero-product{
+  width: var(--hero-media) !important;
+}
+
+@media (min-width: 601px){
+  .position-card{
+    width: var(--matrix-size) !important;
+    margin: 72px auto 112px !important;
+  }
+}
+
+/* Testimonials: Figma chrome — first card teal, others dark */
+.testimonials article{
+  background: #020707 !important;
+  border: 1px solid #08b9b5 !important;
+  border-radius: 16px !important;
+  padding: 24px 22px 20px !important;
+  text-align: start !important;
+}
+.testimonials article:first-child{
+  background: #08b9b5 !important;
+  border-color: #08b9b5 !important;
+  color: #fff !important;
+}
+.testimonials article:first-child p,
+.testimonials article:first-child small,
+.testimonials article:first-child small strong{
+  color: #fff !important;
+}
+.testimonials article:first-child .avatar{
+  background: #fff !important;
+  color: #08b9b5 !important;
+}
+
+/* CTA lockup: phone overlaps laptop body, group stays compact */
+.cta-devices,
+.cta .cta-devices,
+.cta-inner .cta-devices,
+.about-cta .cta-devices{
+  max-width: var(--cta-devices-max) !important;
+  min-height: 300px !important;
+}
+.cta-devices img:first-child,
+.cta .cta-devices img:first-child,
+.cta-inner .cta-devices img:first-child,
+.about-cta .cta-devices img:first-child{
+  max-width: 380px !important;
+  width: 76% !important;
+}
+.cta-devices img:last-child,
+.cta .cta-devices img:last-child,
+.cta-inner .cta-devices img:last-child,
+.about-cta .cta-devices img:last-child{
+  max-width: var(--cta-phone-max) !important;
+  max-height: 230px !important;
+  left: 22% !important;
+}
+html[dir="rtl"] .cta-devices img:last-child,
+html[dir="rtl"] .cta .cta-devices img:last-child,
+html[dir="rtl"] .cta-inner .cta-devices img:last-child,
+html[dir="rtl"] .about-cta .cta-devices img:last-child{
+  left: auto !important;
+  right: 22% !important;
+}
+.features-cta .cta-devices{
+  max-width: 420px !important;
+  min-height: 260px !important;
+}
+.features-cta .cta-devices img:first-child{max-width: 340px !important}
+.features-cta .cta-devices img:last-child{max-width: 100px !important; max-height: 200px !important}
+
+.feature-row{
+  padding: var(--feature-row-pad) 0 !important;
+  min-height: 488px !important;
+}
+.feature-row .feature-media,
+.feature-row > img.feature-media{
+  max-width: var(--feature-media) !important;
+}
+
+/* About Built-for: teal plate / black label, taller aspect */
+.team-cards article{
+  border: 0 !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+.team-cards img{
+  background: #08b9b5 !important;
+  height: var(--team-plate) !important;
+  padding: 18px 22px !important;
+  object-fit: contain !important;
+}
+.team-cards b{
+  background: #000 !important;
+  color: #fff !important;
+  padding: 16px 12px !important;
+}
+
+.about-problem-grid{gap: 24px !important}
+.purpose-section{
+  background: linear-gradient(180deg,#0bbab6 0%,#078e8b 36%,#003b3a 70%,#020707 100%) !important;
+}
+.purpose-grid{gap: 22px !important}
+
+/* Book Demo benefits + calendar density */
+.demo-benefits{
+  width: 100% !important;
+  max-width: none !important;
+  padding: 32px 40px 28px !important;
+  margin: 0 0 40px !important;
+  border-radius: 18px !important;
+}
+.demo-benefits h3{margin: 0 0 18px !important; font-size: 18px !important}
+.demo-benefits > div{gap: 28px !important}
+.calendar{padding: 36px 40px 28px !important}
+.weekdays{margin-bottom: 8px !important}
+
+/* Trial title bars + field chrome */
+.trial-section{
+  border-radius: 18px !important;
+  border: 1px solid #1a5c5c !important;
+  overflow: hidden !important;
+}
+.trial-section > h2{
+  padding: 20px 32px !important;
+  border-radius: 0 !important;
+}
+.trial-fields input:not([type=file]),
+.trial-phone{
+  height: 48px !important;
+  border-radius: 28px !important;
+}
+.file-drop{border-radius: 18px !important; min-height: 128px !important}
+.trial-submit{width: 100% !important; border-radius: 16px !important; height: 58px !important}
