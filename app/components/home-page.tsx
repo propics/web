@@ -157,7 +157,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               aria-hidden="true"
             >
               <path
-                d="M505 40V148A52 52 0 0 1 453 200H340A40 40 0 0 0 300 240V326A52 52 0 0 0 352 378H640A40 40 0 0 1 680 418V506A52 52 0 0 1 628 558H340A40 40 0 0 0 300 598V686A52 52 0 0 0 352 736H640A40 40 0 0 1 680 776V810"
+                d="M505 72V148A52 52 0 0 1 453 200H340A40 40 0 0 0 300 240V326A52 52 0 0 0 352 378H640A40 40 0 0 1 680 418V506A52 52 0 0 1 628 558H340A40 40 0 0 0 300 598V686A52 52 0 0 0 352 736H640A40 40 0 0 1 680 776V810"
                 fill="none"
                 stroke="#fff"
                 strokeWidth="4"
@@ -165,7 +165,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                 strokeLinejoin="round"
               />
               <g fill="#08b9b5" stroke="#fff" strokeWidth="3">
-                <circle cx="505" cy="40" r="10" />
+                <circle cx="505" cy="72" r="10" />
                 <circle cx="300" cy="240" r="10" />
                 <circle cx="680" cy="418" r="10" />
                 <circle cx="300" cy="598" r="10" />
