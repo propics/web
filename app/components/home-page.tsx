@@ -154,8 +154,11 @@ export function HomePage({ locale }: { locale: Locale }) {
               preserveAspectRatio="xMidYMid meet"
               aria-hidden="true"
             >
+              {/* Circular-arc S-curve: inner R=108, outer R=52. Dots sit on the
+                  9/3-o'clock outer apex of each elbow. Horizontal of each
+                  elbow is at the top of the number; content midline is the dot. */}
               <path
-                d="M508 44V120Q508 200 428 200H368Q288 200 288 280V370Q288 450 368 450H612Q692 450 692 530V620Q692 700 612 700H368Q288 700 288 780V870Q288 950 368 950H612Q692 950 692 1030V1110"
+                d="M508 44V150A108 108 0 0 1 400 258H340A52 52 0 0 0 288 310V390A108 108 0 0 0 396 498H640A52 52 0 0 1 692 550V630A108 108 0 0 1 584 738H340A52 52 0 0 0 288 790V870A108 108 0 0 0 396 978H640A52 52 0 0 1 692 1030V1110"
                 fill="none"
                 stroke="#fff"
                 strokeWidth="4"
@@ -164,10 +167,10 @@ export function HomePage({ locale }: { locale: Locale }) {
               />
               <g fill="#08b9b5" stroke="#fff" strokeWidth="3">
                 <circle cx="508" cy="44" r="10" />
-                <circle cx="304" cy="220" r="10" />
-                <circle cx="676" cy="470" r="10" />
-                <circle cx="304" cy="720" r="10" />
-                <circle cx="676" cy="970" r="10" />
+                <circle cx="288" cy="310" r="10" />
+                <circle cx="692" cy="550" r="10" />
+                <circle cx="288" cy="790" r="10" />
+                <circle cx="692" cy="1030" r="10" />
               </g>
             </svg>
             {h.journeySteps.map((step, i) => (
