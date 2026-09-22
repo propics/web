@@ -2535,11 +2535,14 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     letter-spacing: -0.07em !important;
     line-height: 80px !important;
     color: #fff !important;
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
     height: 80px !important;
-    /* Arial digits sit high in the em-box — shift the ink down. */
-    padding: 12px 0 0 !important;
+    padding: 0 !important;
     box-sizing: border-box !important;
+    /* Arial digits sit high in the em-box — drop the ink onto the dot. */
+    position: relative !important;
+    top: 6px !important;
   }
   .l2d-track article img{
     width: 68px !important;
@@ -2547,7 +2550,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     object-fit: contain !important;
     z-index: 3 !important;
     /* Kill leftover translateX(55px); slight optical drop. */
-    transform: translateY(4px) !important;
+    transform: translateY(3px) !important;
     top: auto !important;
   }
   .l2d-track article h3{
@@ -2559,14 +2562,17 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     height: auto !important;
     padding: 0 !important;
     display: block !important;
-    /* Cairo cap-center sits below the em midline — shift ink up. */
-    transform: translateY(-11px) !important;
+    /* Cairo cap-center sits below the em midline — raise the ink. */
+    position: relative !important;
+    top: -6px !important;
+    transform: none !important;
     max-width: 420px !important;
+    z-index: 4 !important;
   }
   /* Description: out of flow on the article, under the title. */
   .l2d-track article p{
     position: absolute !important;
-    top: calc(50% + 14px) !important;
+    top: calc(50% + 18px) !important;
     width: max-content !important;
     max-width: 420px !important;
     font-size: 15px !important;
@@ -2578,13 +2584,14 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     line-height: 1.25 !important;
     transform: none !important;
     height: auto !important;
+    z-index: 4 !important;
   }
 
   /* Odd: number LEFT with Figma breathing room — rail/dot@250 — icon + title.
-     Number col 168 → ~82px to the rail. Icon at 280, ~12px past the stroke. */
+     Number col 168 → ~82px to the rail. Icon at 280, then 18px to title. */
   .l2d-track.journey-timeline article:nth-of-type(odd),
   .l2d-track article:nth-of-type(odd){
-    grid-template-columns: 168px 112px 68px 8px max-content minmax(0,1fr) !important;
+    grid-template-columns: 168px 112px 68px 18px max-content minmax(0,1fr) !important;
     text-align: left !important;
   }
   .l2d-track.journey-timeline article:nth-of-type(odd) b,
@@ -2604,7 +2611,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     text-align: left !important;
   }
   .l2d-track article:nth-of-type(odd) p{
-    left: 356px !important;
+    left: 366px !important;
     right: auto !important;
     text-align: left !important;
   }
@@ -2612,7 +2619,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   /* Even: title + icon LEFT — rail/dot@600 — number RIGHT with breathing room. */
   .l2d-track.journey-timeline article:nth-of-type(even),
   .l2d-track article:nth-of-type(even){
-    grid-template-columns: minmax(0,1fr) max-content 8px 68px 112px 168px !important;
+    grid-template-columns: minmax(0,1fr) max-content 18px 68px 112px 168px !important;
     text-align: right !important;
   }
   .l2d-track.journey-timeline article:nth-of-type(even) h3,
@@ -2632,7 +2639,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     padding-left: 0 !important;
   }
   .l2d-track article:nth-of-type(even) p{
-    right: 356px !important;
+    right: 366px !important;
     left: auto !important;
     text-align: right !important;
   }
