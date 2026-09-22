@@ -2508,7 +2508,15 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   .timeline article img,
   .timeline article div,
   .journey-timeline article img,
-  .journey-timeline article div{
+  .journey-timeline article div,
+  .timeline article:nth-of-type(odd) img,
+  .timeline article:nth-of-type(odd) div,
+  .timeline article:nth-of-type(even) img,
+  .timeline article:nth-of-type(even) div,
+  .journey-timeline article:nth-of-type(odd) img,
+  .journey-timeline article:nth-of-type(odd) div,
+  .journey-timeline article:nth-of-type(even) img,
+  .journey-timeline article:nth-of-type(even) div{
     transform: none !important;
     top: auto !important;
     margin-top: 0 !important;
