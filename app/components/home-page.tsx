@@ -147,18 +147,17 @@ export function HomePage({ locale }: { locale: Locale }) {
             <br />
             <span>{h.journeyTitleHighlight}</span>
           </h2>
-          <div className="timeline journey-timeline">
+          <div className="timeline journey-timeline l2d-track">
+            {/* Compact Figma S: viewBox 980×840, inner R=52, outer R=40.
+                Elbow-dot cy values are the single source of truth for row midlines. */}
             <svg
-              className="journey-path"
-              viewBox="0 0 980 1120"
+              className="l2d-path"
+              viewBox="0 0 980 840"
               preserveAspectRatio="xMidYMid meet"
               aria-hidden="true"
             >
-              {/* Circular-arc S-curve: inner R=108, outer R=52. Dots sit on the
-                  9/3-o'clock outer apex of each elbow. Horizontal of each
-                  elbow is at the top of the number; content midline is the dot. */}
               <path
-                d="M508 44V150A108 108 0 0 1 400 258H340A52 52 0 0 0 288 310V390A108 108 0 0 0 396 498H640A52 52 0 0 1 692 550V630A108 108 0 0 1 584 738H340A52 52 0 0 0 288 790V870A108 108 0 0 0 396 978H640A52 52 0 0 1 692 1030V1110"
+                d="M505 40V148A52 52 0 0 1 453 200H340A40 40 0 0 0 300 240V326A52 52 0 0 0 352 378H640A40 40 0 0 1 680 418V506A52 52 0 0 1 628 558H340A40 40 0 0 0 300 598V686A52 52 0 0 0 352 736H640A40 40 0 0 1 680 776V810"
                 fill="none"
                 stroke="#fff"
                 strokeWidth="4"
@@ -166,15 +165,18 @@ export function HomePage({ locale }: { locale: Locale }) {
                 strokeLinejoin="round"
               />
               <g fill="#08b9b5" stroke="#fff" strokeWidth="3">
-                <circle cx="508" cy="44" r="10" />
-                <circle cx="288" cy="310" r="10" />
-                <circle cx="692" cy="550" r="10" />
-                <circle cx="288" cy="790" r="10" />
-                <circle cx="692" cy="1030" r="10" />
+                <circle cx="505" cy="40" r="10" />
+                <circle cx="300" cy="240" r="10" />
+                <circle cx="680" cy="418" r="10" />
+                <circle cx="300" cy="598" r="10" />
+                <circle cx="680" cy="776" r="10" />
               </g>
             </svg>
             {h.journeySteps.map((step, i) => (
-              <article key={step.title}>
+              <article
+                key={step.title}
+                style={{ top: [240, 418, 598, 776][i] }}
+              >
                 <b>{String(i + 1).padStart(2, "0")}</b>
                 <img src={stepIcons[i]} alt="" />
                 <div>

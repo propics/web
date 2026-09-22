@@ -2456,24 +2456,28 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   color: #08a8a4 !important;
 }
 
-/* Lead-to-Deal: Figma lock. One SVG path + dots. Number, elbow-dot,
-   icon, and TITLE share one midline. Description hangs under the title.
-   Snake stays LTR in AR; only type direction/alignment flips. */
+/* Lead-to-Deal: single SVG source of truth (.l2d-track).
+   Compact squashed S (980×840). Article top = elbow-dot cy; the row is
+   translated -50% so number/icon/title midline sits on the circle.
+   Description hangs under the title. LTR snake in AR. */
 @media (min-width: 601px){
-  .timeline,
-  .journey-timeline{
+  .l2d-track.timeline,
+  .l2d-track.journey-timeline,
+  .l2d-track{
     direction: ltr !important;
     position: relative !important;
     width: min(980px, 100%) !important;
-    height: 1120px !important;
-    margin: 36px auto 24px !important;
+    height: 840px !important;
+    margin: 28px auto 16px !important;
     background: none !important;
     background-image: none !important;
     overflow: visible !important;
     transform: none !important;
+    display: block !important;
   }
-  .timeline-line{display: none !important}
-  .journey-path{
+  .l2d-track .timeline-line,
+  .l2d-track .journey-path{display: none !important}
+  .l2d-track .l2d-path{
     position: absolute !important;
     inset: 0 !important;
     width: 100% !important;
@@ -2481,20 +2485,18 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     pointer-events: none !important;
     z-index: 1 !important;
     overflow: visible !important;
+    display: block !important;
   }
-  .timeline::after,
-  .journey-timeline::after,
-  .timeline article::after,
-  .journey-timeline article::after{
+  .l2d-track::after,
+  .l2d-track article::after{
     content: none !important;
     display: none !important;
   }
-  .timeline article,
-  .journey-timeline article{
+  .l2d-track article{
     position: absolute !important;
     left: 0 !important;
     width: 100% !important;
-    height: 100px !important;
+    height: 80px !important;
     padding: 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -2504,68 +2506,63 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     gap: 0 !important;
     z-index: 2 !important;
     overflow: visible !important;
+    transform: translateY(-50%) !important;
   }
-  .timeline article img,
-  .timeline article div,
-  .journey-timeline article img,
-  .journey-timeline article div,
-  .timeline article:nth-of-type(odd) img,
-  .timeline article:nth-of-type(odd) div,
-  .timeline article:nth-of-type(even) img,
-  .timeline article:nth-of-type(even) div,
-  .journey-timeline article:nth-of-type(odd) img,
-  .journey-timeline article:nth-of-type(odd) div,
-  .journey-timeline article:nth-of-type(even) img,
-  .journey-timeline article:nth-of-type(even) div{
+  .l2d-track article:nth-of-type(1){top: 240px !important}
+  .l2d-track article:nth-of-type(2){top: 418px !important}
+  .l2d-track article:nth-of-type(3){top: 598px !important}
+  .l2d-track article:nth-of-type(4){top: 776px !important}
+  .l2d-track article img,
+  .l2d-track article div,
+  .l2d-track article:nth-of-type(odd) img,
+  .l2d-track article:nth-of-type(odd) div,
+  .l2d-track article:nth-of-type(even) img,
+  .l2d-track article:nth-of-type(even) div{
     transform: none !important;
     top: auto !important;
-    margin-top: 0 !important;
+    margin: 0 !important;
     padding-top: 0 !important;
   }
-  .timeline article b,
-  .journey-timeline article b{
-    font-size: 88px !important;
+  .l2d-track article b{
+    font-size: 72px !important;
     font-weight: 300 !important;
     letter-spacing: -0.06em !important;
-    line-height: 1 !important;
+    line-height: 0.78 !important;
     color: #fff !important;
-  }
-  .timeline article img,
-  .journey-timeline article img{
-    width: 56px !important;
+    display: flex !important;
+    align-items: center !important;
     height: 56px !important;
+  }
+  .l2d-track article img{
+    width: 52px !important;
+    height: 52px !important;
     object-fit: contain !important;
     z-index: 3 !important;
     align-self: center !important;
   }
-  .timeline article div,
-  .journey-timeline article div{
+  .l2d-track article div{
     position: relative !important;
-    top: 0 !important;
-    max-width: 380px !important;
+    top: auto !important;
+    max-width: 420px !important;
     align-self: center !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
   }
-  .timeline article h3,
-  .journey-timeline article h3{
-    font-size: 24px !important;
+  .l2d-track article h3{
+    font-size: 22px !important;
     font-weight: 800 !important;
     color: #08b9b5 !important;
     white-space: nowrap !important;
     margin: 0 !important;
-    line-height: 1.15 !important;
+    line-height: 1.1 !important;
   }
-  /* Description hangs under the title so only h3 participates in the
-     shared number/dot/icon/title midline. */
-  .timeline article p,
-  .journey-timeline article p{
+  .l2d-track article p{
     position: absolute !important;
     left: 0 !important;
     right: 0 !important;
-    top: calc(100% + 5px) !important;
-    font-size: 14px !important;
+    top: calc(100% + 4px) !important;
+    font-size: 13px !important;
     font-weight: 600 !important;
     color: #fff !important;
     white-space: nowrap !important;
@@ -2573,82 +2570,57 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     line-height: 1.3 !important;
   }
 
-  /* Article box is 100px; top = elbow-dot Y - 50 so the grid midline
-     lands on the SVG circle. */
-  .timeline article:nth-of-type(1),
-  .journey-timeline article:nth-of-type(1){top: 260px !important}
-  .timeline article:nth-of-type(2),
-  .journey-timeline article:nth-of-type(2){top: 500px !important}
-  .timeline article:nth-of-type(3),
-  .journey-timeline article:nth-of-type(3){top: 740px !important}
-  .timeline article:nth-of-type(4),
-  .journey-timeline article:nth-of-type(4){top: 980px !important}
-
-  /* Odd: [number LEFT] — [dot ON path @ 288] — [icon + title RIGHT]
-     248 + 54 = 302; icon sits just outside the filled dot (~8px visual
-     after PNG padding), matching Figma. Numbers sit closer to the rail. */
-  .timeline article:nth-of-type(odd),
-  .journey-timeline article:nth-of-type(odd){
-    grid-template-columns: 248px 54px 56px 8px max-content minmax(0,1fr) !important;
+  /* Odd: number LEFT — dot@300 — icon + title RIGHT. 268+52=320. */
+  .l2d-track article:nth-of-type(odd){
+    grid-template-columns: 268px 52px 52px 6px max-content minmax(0,1fr) !important;
     text-align: left !important;
   }
-  .timeline article:nth-of-type(odd) b,
-  .journey-timeline article:nth-of-type(odd) b{
+  .l2d-track article:nth-of-type(odd) b{
     grid-column: 1 !important;
     grid-row: 1 !important;
     justify-self: end !important;
-    padding-right: 8px !important;
+    padding-right: 10px !important;
   }
-  .timeline article:nth-of-type(odd) img,
-  .journey-timeline article:nth-of-type(odd) img{
+  .l2d-track article:nth-of-type(odd) img{
     grid-column: 3 !important;
     grid-row: 1 !important;
     justify-self: start !important;
   }
-  .timeline article:nth-of-type(odd) div,
-  .journey-timeline article:nth-of-type(odd) div{
+  .l2d-track article:nth-of-type(odd) div{
     grid-column: 5 !important;
     grid-row: 1 !important;
     text-align: left !important;
   }
 
-  /* Even: [title + icon LEFT] — [dot ON path @ 692] — [number RIGHT] */
-  .timeline article:nth-of-type(even),
-  .journey-timeline article:nth-of-type(even){
-    grid-template-columns: minmax(0,1fr) max-content 8px 56px 54px 248px !important;
+  /* Even: title + icon LEFT — dot@680 — number RIGHT. */
+  .l2d-track article:nth-of-type(even){
+    grid-template-columns: minmax(0,1fr) max-content 6px 52px 52px 268px !important;
     text-align: right !important;
   }
-  .timeline article:nth-of-type(even) div,
-  .journey-timeline article:nth-of-type(even) div{
+  .l2d-track article:nth-of-type(even) div{
     grid-column: 2 !important;
     grid-row: 1 !important;
     text-align: right !important;
   }
-  .timeline article:nth-of-type(even) img,
-  .journey-timeline article:nth-of-type(even) img{
+  .l2d-track article:nth-of-type(even) img{
     grid-column: 4 !important;
     grid-row: 1 !important;
     justify-self: end !important;
   }
-  .timeline article:nth-of-type(even) b,
-  .journey-timeline article:nth-of-type(even) b{
+  .l2d-track article:nth-of-type(even) b{
     grid-column: 6 !important;
     grid-row: 1 !important;
     justify-self: start !important;
-    padding-left: 8px !important;
+    padding-left: 10px !important;
   }
 }
-html[dir="rtl"] .timeline article:nth-of-type(odd) div,
-html[dir="rtl"] .journey-timeline article:nth-of-type(odd) div{
+html[dir="rtl"] .l2d-track article:nth-of-type(odd) div{
   text-align: right !important;
   direction: rtl !important;
 }
-html[dir="rtl"] .timeline article:nth-of-type(even) div,
-html[dir="rtl"] .journey-timeline article:nth-of-type(even) div{
+html[dir="rtl"] .l2d-track article:nth-of-type(even) div{
   text-align: left !important;
   direction: rtl !important;
 }
-html[dir="rtl"] .timeline article h3,
-html[dir="rtl"] .timeline article p,
-html[dir="rtl"] .journey-timeline article h3,
-html[dir="rtl"] .journey-timeline article p{white-space: normal !important}
+html[dir="rtl"] .l2d-track article h3,
+html[dir="rtl"] .l2d-track article p{white-space: normal !important}
