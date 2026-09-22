@@ -2577,11 +2577,11 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   .journey-timeline article:nth-of-type(4){top: 980px !important}
 
   /* Odd: [number LEFT] — [dot ON path @ 288] — [icon + title RIGHT]
-     230 + 82 = 312; icon starts 24px past the stroke (12px past the
-     filled dot). */
+     248 + 54 = 302; icon sits just outside the filled dot (~8px visual
+     after PNG padding), matching Figma. Numbers sit closer to the rail. */
   .timeline article:nth-of-type(odd),
   .journey-timeline article:nth-of-type(odd){
-    grid-template-columns: 230px 82px 56px 12px max-content minmax(0,1fr) !important;
+    grid-template-columns: 248px 54px 56px 8px max-content minmax(0,1fr) !important;
     text-align: left !important;
   }
   .timeline article:nth-of-type(odd) b,
@@ -2589,7 +2589,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     grid-column: 1 !important;
     grid-row: 1 !important;
     justify-self: end !important;
-    padding-right: 12px !important;
+    padding-right: 8px !important;
   }
   .timeline article:nth-of-type(odd) img,
   .journey-timeline article:nth-of-type(odd) img{
@@ -2607,7 +2607,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   /* Even: [title + icon LEFT] — [dot ON path @ 692] — [number RIGHT] */
   .timeline article:nth-of-type(even),
   .journey-timeline article:nth-of-type(even){
-    grid-template-columns: minmax(0,1fr) max-content 12px 56px 82px 230px !important;
+    grid-template-columns: minmax(0,1fr) max-content 8px 56px 54px 248px !important;
     text-align: right !important;
   }
   .timeline article:nth-of-type(even) div,
@@ -2627,7 +2627,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     grid-column: 6 !important;
     grid-row: 1 !important;
     justify-self: start !important;
-    padding-left: 12px !important;
+    padding-left: 8px !important;
   }
 }
 html[dir="rtl"] .timeline article:nth-of-type(odd) div,
