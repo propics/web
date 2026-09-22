@@ -177,6 +177,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             {h.journeySteps.map((step, i) => (
               <article
                 key={step.title}
+                className="l2d-step"
                 style={{ top: [275, 483, 693, 900][i] }}
               >
                 <b>{String(i + 1).padStart(2, "0")}</b>
