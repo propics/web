@@ -2467,7 +2467,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     width: min(980px, 100%) !important;
     height: 1160px !important;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 720'%3E%3Cpath d='M208 10V48Q208 78 168 78H126Q84 78 84 120V192Q84 234 126 234H274Q316 234 316 276V348Q316 390 274 390H126Q84 390 84 432V504Q84 546 126 546H274Q316 546 316 588V710' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
-    background-size: 700px 1080px !important;
+    background-size: 600px 1080px !important;
     background-position: center 28px !important;
     background-repeat: no-repeat !important;
   }
@@ -2533,7 +2533,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   .timeline article:nth-of-type(odd),
   .journey-timeline article:nth-of-type(odd){
     /* number | path+dot gutter | icon | gap | title+desc | trailing space */
-    grid-template-columns: 210px 154px 56px 18px max-content minmax(0,1fr) !important;
+    grid-template-columns: 250px 132px 56px 16px max-content minmax(0,1fr) !important;
     text-align: left !important;
   }
   .timeline article:nth-of-type(odd) b,
@@ -2559,7 +2559,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   .timeline article:nth-of-type(even),
   .journey-timeline article:nth-of-type(even){
     /* leading space | title+desc | gap | icon | path+dot gutter | number */
-    grid-template-columns: minmax(0,1fr) max-content 18px 56px 154px 210px !important;
+    grid-template-columns: minmax(0,1fr) max-content 16px 56px 132px 250px !important;
     text-align: right !important;
   }
   .timeline article:nth-of-type(even) div,
@@ -2597,12 +2597,12 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   }
   .timeline article:nth-of-type(odd)::after,
   .journey-timeline article:nth-of-type(odd)::after{
-    left: calc(50% - 203px) !important;
+    left: calc(50% - 174px) !important;
     transform: translate(-50%, -50%) !important;
   }
   .timeline article:nth-of-type(even)::after,
   .journey-timeline article:nth-of-type(even)::after{
-    left: calc(50% + 203px) !important;
+    left: calc(50% + 174px) !important;
     transform: translate(-50%, -50%) !important;
   }
   .timeline::after,
@@ -2611,7 +2611,7 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     position: absolute !important;
     z-index: 5 !important;
     top: 33px !important;
-    left: calc(50% + 14px) !important;
+    left: calc(50% + 12px) !important;
     width: 20px !important;
     height: 20px !important;
     border: 3px solid #fff !important;
