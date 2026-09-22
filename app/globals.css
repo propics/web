@@ -2455,3 +2455,77 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
   font-weight: 700 !important;
   color: #08a8a4 !important;
 }
+
+/* Lead-to-Deal: keep numbers/dots on the S, park icon+copy in the
+   vertical pockets so the white stroke never runs through titles. */
+@media (min-width: 601px){
+  .timeline,
+  .journey-timeline{
+    width: min(980px, 100%) !important;
+    height: 1180px !important;
+    background-size: 540px 1060px !important;
+    background-position: center 20px !important;
+  }
+  .timeline article,
+  .journey-timeline article{
+    height: 110px !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+  /* Pockets sit on the verticals (below each horizontal elbow). */
+  .timeline article:nth-of-type(1),
+  .journey-timeline article:nth-of-type(1){top: 263px !important}
+  .timeline article:nth-of-type(2),
+  .journey-timeline article:nth-of-type(2){top: 510px !important}
+  .timeline article:nth-of-type(3),
+  .journey-timeline article:nth-of-type(3){top: 745px !important}
+  .timeline article:nth-of-type(4),
+  .journey-timeline article:nth-of-type(4){top: 977px !important}
+
+  .timeline article:nth-of-type(odd),
+  .journey-timeline article:nth-of-type(odd){
+    /* number | icon (outside path) | path gutter | copy (interior) | trailing spacer */
+    grid-template-columns: 150px 64px 108px minmax(0,1.2fr) minmax(120px,0.75fr) !important;
+    text-align: left !important;
+  }
+  .timeline article:nth-of-type(odd) b,
+  .journey-timeline article:nth-of-type(odd) b{grid-column:1 !important; grid-row:1 !important}
+  .timeline article:nth-of-type(odd) img,
+  .journey-timeline article:nth-of-type(odd) img{grid-column:2 !important; grid-row:1 !important}
+  .timeline article:nth-of-type(odd) div,
+  .journey-timeline article:nth-of-type(odd) div{grid-column:4 !important; grid-row:1 !important; text-align:left !important}
+
+  .timeline article:nth-of-type(even),
+  .journey-timeline article:nth-of-type(even){
+    /* leading spacer | copy (interior) | path gutter | icon (outside path) | number */
+    grid-template-columns: minmax(120px,0.75fr) minmax(0,1.2fr) 108px 64px 150px !important;
+    text-align: right !important;
+  }
+  .timeline article:nth-of-type(even) div,
+  .journey-timeline article:nth-of-type(even) div{grid-column:2 !important; grid-row:1 !important; text-align:right !important}
+  .timeline article:nth-of-type(even) img,
+  .journey-timeline article:nth-of-type(even) img{grid-column:4 !important; grid-row:1 !important}
+  .timeline article:nth-of-type(even) b,
+  .journey-timeline article:nth-of-type(even) b{grid-column:5 !important; grid-row:1 !important}
+
+  .timeline article::after,
+  .journey-timeline article::after{
+    z-index: 4 !important;
+  }
+  .timeline article:nth-of-type(odd)::after,
+  .journey-timeline article:nth-of-type(odd)::after{
+    left: calc(50% - 205px) !important;
+    right: auto !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .timeline article:nth-of-type(even)::after,
+  .journey-timeline article:nth-of-type(even)::after{
+    left: calc(50% + 205px) !important;
+    right: auto !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+html[dir="rtl"] .timeline article:nth-of-type(odd) div,
+html[dir="rtl"] .journey-timeline article:nth-of-type(odd) div{text-align:right !important}
+html[dir="rtl"] .timeline article:nth-of-type(even) div,
+html[dir="rtl"] .journey-timeline article:nth-of-type(even) div{text-align:left !important}
