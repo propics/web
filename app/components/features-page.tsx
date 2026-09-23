@@ -67,7 +67,7 @@ export function FeaturesPage({ locale }: { locale: Locale }) {
       <section className="features-cta grid-bg">
         <div className="container feature-row">
           <div className="feature-copy">
-            <h2>
+            <h2 className="section-title">
               {f.ctaTitle} <span>{f.ctaTitleHighlight}</span>
             </h2>
             <p>{f.ctaLead}</p>

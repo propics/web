@@ -1040,6 +1040,8 @@ html[dir="rtl"] .position-card .label-right{
 :root{
   --page-max:1680px;
   --page-width:88%;
+  /* Figma content measure used by .lead — primary section H2s share this. */
+  --section-title-max:960px;
 }
 .container{
   width:min(var(--page-max), var(--page-width))!important;
@@ -2634,3 +2636,39 @@ html[dir="rtl"] .l2d-track article:nth-of-type(even) p{
 }
 html[dir="rtl"] .l2d-track article h3,
 html[dir="rtl"] .l2d-track article p{white-space: nowrap !important}
+
+/* ===== Primary marketing H2 measure (Figma --section-title-max) =====
+   One max-width / line length for section titles on Home, Features,
+   About, and any later marketing band. Centered titles are a centered
+   block; split / CTA titles stay start-aligned (LTR left, RTL right).
+   Excludes form bars, calendar, contact form, feature-row titles, L2D. */
+h2.section-title{
+  max-width:min(100%, var(--section-title-max)) !important;
+  width:100%;
+  box-sizing:border-box;
+}
+.centered h2.section-title,
+.about-problem h2.section-title,
+.purpose-section h2.section-title,
+h2.why-title.section-title,
+.trusted h2.section-title{
+  margin-inline:auto !important;
+  text-align:center !important;
+}
+.split h2.section-title,
+.cta h2.section-title,
+.about-teams h2.section-title,
+.about-cta h2.section-title,
+.features-cta h2.section-title,
+.feature-copy h2.section-title{
+  margin-inline:0 !important;
+  text-align:start !important;
+}
+html[dir="rtl"] .split h2.section-title,
+html[dir="rtl"] .cta h2.section-title,
+html[dir="rtl"] .about-teams h2.section-title,
+html[dir="rtl"] .about-cta h2.section-title,
+html[dir="rtl"] .features-cta h2.section-title,
+html[dir="rtl"] .feature-copy h2.section-title{
+  text-align:start !important;
+}

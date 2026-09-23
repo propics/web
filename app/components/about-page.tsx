@@ -54,7 +54,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section className="about-teams grid-bg">
         <div className="container split">
           <div>
-            <h2>
+            <h2 className="section-title">
               {a.teamsTitle}
               <br />
               <span>{a.teamsTitleHighlight}</span>
@@ -74,7 +74,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
 
       <section className="about-problem grid-bg centered">
         <div className="container">
-          <h2>
+          <h2 className="section-title">
             {a.problemTitle}
             <br />
             <span>{a.problemTitleHighlight}</span>
@@ -100,7 +100,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
 
       <section className="purpose-section centered">
         <div className="container">
-          <h2>
+          <h2 className="section-title">
             {a.purposeTitle}
             <br />
             <span>{a.purposeTitleRest}</span>
@@ -129,7 +129,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
               <p>{a.visionBody}</p>
             </article>
           </div>
-          <h2 className="why-title">
+          <h2 className="why-title section-title">
             {a.whyTitle}
             <br />
             <span>{a.whyTitleHighlight}</span>
@@ -145,7 +145,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section className="about-cta grid-bg">
         <div className="container split">
           <div>
-            <h2>
+            <h2 className="section-title">
               {a.ctaTitle}
               <br />
               <span>{a.ctaTitleHighlight}</span>

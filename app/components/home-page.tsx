@@ -62,7 +62,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <section className="section section-problems grid-bg">
         <div className="container split">
           <div>
-            <h2>
+            <h2 className="section-title">
               {h.painTitle} <span>{h.painTitleHighlight}</span>
             </h2>
             <p className="lead left">
@@ -89,7 +89,7 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section grid-bg centered">
         <div className="container">
-          <h2>
+          <h2 className="section-title">
             {h.standardTitle}
             <br />
             <span>{h.standardTitleHighlight}</span>
@@ -122,7 +122,7 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section turquoise-section centered">
         <div className="container">
-          <h2>
+          <h2 className="section-title">
             <span className="white">{h.solutionsTitleWhite}</span>
             <br />
             {h.solutionsTitleRest}
@@ -142,7 +142,7 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section grid-bg centered">
         <div className="container">
-          <h2>
+          <h2 className="section-title">
             {h.journeyTitle}
             <br />
             <span>{h.journeyTitleHighlight}</span>
@@ -192,7 +192,7 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section grid-bg centered">
         <div className="container">
-          <h2>
+          <h2 className="section-title">
             {h.impactTitle} <span>{h.impactTitleHighlight}</span>
           </h2>
           <p className="lead">{h.impactLead}</p>
@@ -206,7 +206,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
           <p className="impact-note">{h.impactNote}</p>
           <div className="trusted">
-            <h2>
+            <h2 className="section-title">
               {h.trustedTitle}
               <br />
               <span>{h.trustedTitleHighlight}</span>
@@ -235,7 +235,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <section className="section cta grid-bg">
         <div className="container split cta-inner">
           <div>
-            <h2>
+            <h2 className="section-title">
               {h.ctaTitle} <span>{h.ctaTitleHighlight}</span>
             </h2>
             <p className="lead left">{h.ctaLead}</p>

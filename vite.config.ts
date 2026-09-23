@@ -17,6 +17,14 @@ const localBindingConfig = {
   vars: {
     BOOKING_DEV_MODE: process.env.BOOKING_DEV_MODE ?? "",
     GOOGLE_APPS_SCRIPT_URL: process.env.GOOGLE_APPS_SCRIPT_URL ?? "",
+    NOTIFICATION_EMAIL:
+      process.env.NOTIFICATION_EMAIL ??
+      process.env.BOOKING_NOTIFY_EMAIL ??
+      "propicsksa@gmail.com",
+    BOOKING_NOTIFY_EMAIL:
+      process.env.BOOKING_NOTIFY_EMAIL ??
+      process.env.NOTIFICATION_EMAIL ??
+      "propicsksa@gmail.com",
   },
   d1_databases: d1
     ? [

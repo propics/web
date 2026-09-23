@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { deliverLead } from "@/lib/notify";
 
 const required = ["name", "email", "phone", "message"] as const;
 
@@ -16,33 +17,15 @@ export async function POST(request: NextRequest) {
       { status: 400 },
     );
   }
-  const webhook = process.env.GOOGLE_APPS_SCRIPT_URL;
-  if (!webhook) {
-    if (process.env.BOOKING_DEV_MODE === "true") {
-      return NextResponse.json({
-        message: "Message received in local demo mode.",
-      });
-    }
-    // Still accept locally so the form feels working without secrets.
-    return NextResponse.json({
-      message: "Your message has been received. We will get back to you soon.",
-    });
+
+  const result = await deliverLead(body, "contact");
+  if (!result.ok) {
+    return NextResponse.json({ message: result.message }, { status: result.status });
   }
-  const response = await fetch(webhook, {
-    method: "POST",
-    headers: { "content-type": "text/plain;charset=utf-8" },
-    body: JSON.stringify({
-      ...body,
-      source: "propics.sa/contact",
-      timezone: "Asia/Riyadh",
-    }),
-    redirect: "follow",
-  });
-  if (!response.ok) {
-    return NextResponse.json(
-      { message: "We could not send your message. Please try again." },
-      { status: 502 },
-    );
+  if (result.demo) {
+    return NextResponse.json({
+      message: "Message received in local demo mode.",
+    });
   }
   return NextResponse.json({
     message: "Your message has been received. We will get back to you soon.",
