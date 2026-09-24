@@ -1,4 +1,9 @@
-export const DEFAULT_NOTIFICATION_EMAIL = "propicsksa@gmail.com";
+export const DEFAULT_NOTIFICATION_EMAILS = [
+  "propicsksa@gmail.com",
+  "z.dally@propics.sa",
+] as const;
+
+export const DEFAULT_NOTIFICATION_EMAIL = DEFAULT_NOTIFICATION_EMAILS.join(",");
 export const DEMO_DURATION_MINUTES = 30;
 
 export type LeadKind = "book-demo" | "free-trial" | "contact";
@@ -107,7 +112,7 @@ export async function deliverLead(
       ok: false,
       status: 503,
       message:
-        "Email service is not connected yet. Set GOOGLE_APPS_SCRIPT_URL (notifications go to propicsksa@gmail.com).",
+        "Email service is not connected yet. Set GOOGLE_APPS_SCRIPT_URL (notifications go to propicsksa@gmail.com,z.dally@propics.sa).",
     };
   }
 

@@ -20,11 +20,11 @@ const localBindingConfig = {
     NOTIFICATION_EMAIL:
       process.env.NOTIFICATION_EMAIL ??
       process.env.BOOKING_NOTIFY_EMAIL ??
-      "propicsksa@gmail.com",
+      "propicsksa@gmail.com,z.dally@propics.sa",
     BOOKING_NOTIFY_EMAIL:
       process.env.BOOKING_NOTIFY_EMAIL ??
       process.env.NOTIFICATION_EMAIL ??
-      "propicsksa@gmail.com",
+      "propicsksa@gmail.com,z.dally@propics.sa",
   },
   d1_databases: d1
     ? [

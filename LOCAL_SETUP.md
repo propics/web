@@ -13,7 +13,7 @@
 
 Every Book Demo, Start Trial, and Contact submission is addressed to
 `NOTIFICATION_EMAIL` / `BOOKING_NOTIFY_EMAIL`, defaulting to
-`propicsksa@gmail.com`.
+`propicsksa@gmail.com,z.dally@propics.sa` (comma-separated; both inboxes).
 
 The public footer still shows the brand address `info@propics.co`. Form and API
 leads do not use that inbox.

@@ -8,7 +8,8 @@
  *            + team email + client email.
  * Start Trial / Contact: team email only (no calendar).
  */
-const DEFAULT_TEAM_EMAIL = 'propicsksa@gmail.com';
+// MailApp.sendEmail({ to }) accepts a comma-separated list unchanged.
+const DEFAULT_TEAM_EMAIL = 'propicsksa@gmail.com,z.dally@propics.sa';
 const PREFERRED_CALENDAR_NAMES = ['Propics Ksa', 'Propics KSA', 'Propics'];
 const DEFAULT_DURATION_MINUTES = 30;
 
