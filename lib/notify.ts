@@ -26,6 +26,18 @@ export function notificationEmail(): string {
   return fromEnv || DEFAULT_NOTIFICATION_EMAIL;
 }
 
+export function notificationEmails(): string[] {
+  const seen = new Set<string>();
+  const list: string[] = [];
+  for (const part of notificationEmail().split(/[,;]+/)) {
+    const email = part.trim().toLowerCase();
+    if (!email || seen.has(email) || !/^\S+@\S+\.\S+$/.test(email)) continue;
+    seen.add(email);
+    list.push(email);
+  }
+  return list;
+}
+
 /** Book Demo slots are labels like "11:00 - 11:30 AM" / "2:00 - 2:30 عصرا". */
 export function parseDemoSlot(slot: string): {
   startTime: string;
@@ -77,6 +89,7 @@ export function leadPayload(
     source: SOURCES[kind],
     timezone: "Asia/Riyadh",
     notifyEmail: notificationEmail(),
+    notifyEmails: JSON.stringify(notificationEmails()),
   };
   if (kind === "book-demo") {
     const slot = parseDemoSlot(body.time || body.slot || "");

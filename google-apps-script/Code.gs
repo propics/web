@@ -4,7 +4,8 @@
  * Keep the same Web App URL. Execute as: Me (propicsksa@gmail.com).
  * Who has access: Anyone.
  *
- * Book Demo: 30-minute event on "Propics Ksa" (fallback: default/primary)
+ * Book Demo: 30-minute event on "Propics Ksa" (fallback: default/primary),
+ *            calendar invites to every notify inbox + the client,
  *            + team email + client email.
  * Start Trial / Contact: team email only (no calendar).
  */
@@ -16,6 +17,35 @@ const DEFAULT_DURATION_MINUTES = 30;
 function inbox(data) {
   var requested = String((data && (data.notifyEmail || data.NOTIFICATION_EMAIL)) || '').trim();
   return requested || DEFAULT_TEAM_EMAIL;
+}
+
+function parseEmailList() {
+  var seen = {};
+  var out = [];
+  var i;
+  for (i = 0; i < arguments.length; i++) {
+    var value = arguments[i];
+    var parts = [];
+    if (value == null || value === '') continue;
+    if (Object.prototype.toString.call(value) === '[object Array]') {
+      parts = value;
+    } else {
+      var raw = String(value).trim();
+      if (raw.charAt(0) === '[') {
+        try { parts = JSON.parse(raw); } catch (ignore) { parts = raw.split(/[,;]+/); }
+      } else {
+        parts = raw.split(/[,;]+/);
+      }
+    }
+    var j;
+    for (j = 0; j < parts.length; j++) {
+      var email = String(parts[j] || '').trim().toLowerCase();
+      if (!email || seen[email] || !/^\S+@\S+\.\S+$/.test(email)) continue;
+      seen[email] = true;
+      out.push(email);
+    }
+  }
+  return out;
 }
 
 function field(value) {
@@ -138,6 +168,82 @@ function findExistingEvent(calendar, start, end, title) {
   return null;
 }
 
+function guestEmailsOnEvent(event) {
+  var seen = {};
+  try {
+    var guests = event.getGuestList(true);
+    var i;
+    for (i = 0; i < guests.length; i++) {
+      var email = String(guests[i].getEmail() || '').trim().toLowerCase();
+      if (email) seen[email] = true;
+    }
+  } catch (ignore) {}
+  return seen;
+}
+
+function addGuestsQuietly(event, emails) {
+  var notes = [];
+  var already = guestEmailsOnEvent(event);
+  var i;
+  for (i = 0; i < emails.length; i++) {
+    var email = emails[i];
+    if (already[email]) {
+      notes.push(email + ' already invited');
+      continue;
+    }
+    try {
+      event.addGuest(email);
+      already[email] = true;
+      notes.push(email + ' added');
+    } catch (err) {
+      notes.push(email + ' failed: ' + err);
+    }
+  }
+  return notes;
+}
+
+function sendGuestInvites(calendar, event, emails) {
+  if (!emails.length) return 'no guests';
+  try {
+    if (typeof Calendar !== 'undefined' && Calendar.Events && Calendar.Events.patch) {
+      var apiId = String(event.getId() || '').split('@')[0];
+      Calendar.Events.patch(
+        {attendees: emails.map(function (email) { return {email: email}; })},
+        calendar.getId(),
+        apiId,
+        {sendUpdates: 'all'}
+      );
+      return 'invites sent (Calendar API)';
+    }
+  } catch (apiErr) {
+    return 'Calendar API send failed: ' + apiErr;
+  }
+  return 'guests added; invites send on createEvent(sendInvites) only';
+}
+
+function createDemoEvent(calendar, title, start, end, description, guests) {
+  var createdWithInvites = false;
+  var event = null;
+  var sendNote = '';
+  if (guests.length) {
+    try {
+      event = calendar.createEvent(title, start, end, {
+        description: description,
+        guests: guests.join(','),
+        sendInvites: true,
+      });
+      createdWithInvites = true;
+      sendNote = 'invites sent';
+    } catch (inviteCreateErr) {
+      sendNote = 'sendInvites create failed: ' + inviteCreateErr;
+    }
+  }
+  if (!event) {
+    event = calendar.createEvent(title, start, end, {description: description});
+  }
+  return {event: event, createdWithInvites: createdWithInvites, sendNote: sendNote};
+}
+
 function bookDemo(data, team) {
   var range = parseSlotRange(
     data.date,
@@ -156,10 +262,29 @@ function bookDemo(data, team) {
     'Slot: ' + field(data.time || data.slot),
   ].join('\n');
 
+  var clientEmail = String(data.email || '').trim().toLowerCase();
+  var notifyGuests = parseEmailList(data.notifyEmails, data.notifyEmail, team, DEFAULT_TEAM_EMAIL);
   var calendar = resolveCalendar();
   var calInfo = calendarLabel(calendar);
+
+  var guests = [];
+  var seenGuest = {};
+  var i;
+  for (i = 0; i < notifyGuests.length; i++) {
+    var notifyEmail = notifyGuests[i];
+    if (notifyEmail === clientEmail) continue;
+    if (seenGuest[notifyEmail]) continue;
+    seenGuest[notifyEmail] = true;
+    guests.push(notifyEmail);
+  }
+  if (clientEmail && /^\S+@\S+\.\S+$/.test(clientEmail) && !seenGuest[clientEmail]) {
+    seenGuest[clientEmail] = true;
+    guests.push(clientEmail);
+  }
+
   var eventStatus = 'not created';
   var inviteStatus = 'skipped';
+  var guestStatus = guests.length ? guests.join(', ') : 'none';
 
   if (!calendar) {
     eventStatus = 'failed: no writable calendar (looked for Propics Ksa / default)';
@@ -168,16 +293,17 @@ function bookDemo(data, team) {
       var event = findExistingEvent(calendar, range.start, range.end, title);
       if (event) {
         eventStatus = 'already existed on ' + calInfo;
+        var addNotes = addGuestsQuietly(event, guests);
+        inviteStatus = sendGuestInvites(calendar, event, guests) + ' | ' + addNotes.join('; ');
       } else {
-        event = calendar.createEvent(title, range.start, range.end, {description: description});
+        var created = createDemoEvent(calendar, title, range.start, range.end, description, guests);
+        event = created.event;
         eventStatus = 'created on ' + calInfo;
-      }
-      if (data.email) {
-        try {
-          event.addGuest(data.email);
-          inviteStatus = 'guest added (' + data.email + ')';
-        } catch (inviteErr) {
-          inviteStatus = 'guest skipped: ' + inviteErr;
+        if (created.createdWithInvites) {
+          inviteStatus = created.sendNote + ' (' + guests.join(', ') + ')';
+        } else {
+          var fallbackNotes = addGuestsQuietly(event, guests);
+          inviteStatus = (created.sendNote || 'added after create') + ' | ' + fallbackNotes.join('; ');
         }
       }
     } catch (calErr) {
@@ -198,23 +324,26 @@ function bookDemo(data, team) {
       '<p><b>Date:</b> ' + when + '</p>' +
       '<p><b>Calendar:</b> ' + calInfo + '</p>' +
       '<p><b>Event:</b> ' + eventStatus + '</p>' +
+      '<p><b>Guests:</b> ' + guestStatus + '</p>' +
       '<p><b>Invite:</b> ' + inviteStatus + '</p>' +
       '<p><b>Notes:</b> ' + field(data.notes) + '</p>',
   });
   try {
-    MailApp.sendEmail({
-      to: data.email,
-      subject: 'Your Propics demo is confirmed',
-      htmlBody:
-        '<h2>Thank you, ' + field(data.name) + '</h2>' +
-        '<p>Your Propics demo is booked for ' + when + '.</p>' +
-        '<p>We look forward to meeting you.</p>',
-    });
+    if (clientEmail) {
+      MailApp.sendEmail({
+        to: data.email,
+        subject: 'Your Propics demo is confirmed',
+        htmlBody:
+          '<h2>Thank you, ' + field(data.name) + '</h2>' +
+          '<p>Your Propics demo is booked for ' + when + '.</p>' +
+          '<p>We look forward to meeting you.</p>',
+      });
+    }
   } catch (clientErr) {
     // Team mail already sent; do not fail the webhook.
   }
 
-  return {ok: true, calendar: calInfo, event: eventStatus, invite: inviteStatus};
+  return {ok: true, calendar: calInfo, event: eventStatus, guests: guestStatus, invite: inviteStatus};
 }
 
 function doGet() {

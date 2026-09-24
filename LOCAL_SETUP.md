@@ -37,7 +37,8 @@ to deliver mail is `GOOGLE_APPS_SCRIPT_URL`.
 
 Book Demo: emails the Propics inbox, emails the client, and creates a
 **30-minute** event on the calendar named **Propics Ksa** (falls back to the
-account default / primary). Sunday week-start on the site is unchanged.
+account default / primary). Every notify address (and the client) is invited
+as a calendar guest with invites sent. Sunday week-start on the site is unchanged.
 
 Start Trial and Contact: email the Propics inbox only — no calendar event.
 
