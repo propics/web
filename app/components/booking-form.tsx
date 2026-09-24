@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 
@@ -12,6 +12,7 @@ export function BookingForm({ locale = "en" }: { locale?: Locale }) {
   const [time, setTime] = useState(t.slots[0]);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const submitting = useRef(false);
 
   const cells = useMemo(() => {
     const year = view.getFullYear();
@@ -46,6 +47,8 @@ export function BookingForm({ locale = "en" }: { locale?: Locale }) {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current || status === "loading") return;
+    submitting.current = true;
     setStatus("loading");
     setMessage("");
     const form = event.currentTarget;
@@ -61,11 +64,13 @@ export function BookingForm({ locale = "en" }: { locale?: Locale }) {
         setStatus("success");
         setMessage(result.message || t.success);
         form.reset();
-      } else {
-        setStatus("error");
-        setMessage(result.message || t.error);
+        return;
       }
+      submitting.current = false;
+      setStatus("error");
+      setMessage(result.message || t.error);
     } catch {
+      submitting.current = false;
       setStatus("error");
       setMessage(t.connectionFailed);
     }
@@ -150,7 +155,10 @@ export function BookingForm({ locale = "en" }: { locale?: Locale }) {
           <input name="email" type="email" required placeholder={t.emailPh} />
         </label>
       </div>
-      <button className="confirm-booking" disabled={status === "loading"}>
+      <button
+        className="confirm-booking"
+        disabled={status === "loading" || status === "success"}
+      >
         {status === "loading" ? t.booking : t.confirm}
       </button>
       {message && <p className={`form-message ${status}`}>{message}</p>}

@@ -25,15 +25,21 @@ demo-mode success if `BOOKING_DEV_MODE=true`). The one env var still required
 to deliver mail is `GOOGLE_APPS_SCRIPT_URL`.
 
 1. Sign in to `propicsksa@gmail.com` and open Google Apps Script.
-2. Create a project and paste `google-apps-script/Code.gs`.
-3. Deploy it as a Web App, executing as the account owner and allowing access to anyone.
-4. Paste its Web App URL into `GOOGLE_APPS_SCRIPT_URL` in `.env.local`.
-5. Change `BOOKING_DEV_MODE` to `false`, then restart the local server.
+2. Create a project (or open the existing one) and **replace** `Code.gs` with
+   the full contents of `google-apps-script/Code.gs`.
+3. Deploy → **Manage deployments** → the existing Web App → pencil →
+   **New version** (keep the same URL). Execute as the account owner; who has
+   access = Anyone.
+4. The first run after a paste will ask for Calendar + Gmail permissions —
+   authorize them as `propicsksa@gmail.com`.
+5. Paste the Web App URL into `GOOGLE_APPS_SCRIPT_URL` in `.env.local`.
+6. Change `BOOKING_DEV_MODE` to `false`, then restart the local server.
 
-Redeploy the Apps Script when `Code.gs` changes so trial and contact leads
-are emailed (calendar events stay Book Demo only).
-
-Book Demo: emails the Propics inbox, emails the client, and creates a one-hour
-Google Calendar event (Sunday week-start on the site is unchanged).
+Book Demo: emails the Propics inbox, emails the client, and creates a
+**30-minute** event on the calendar named **Propics Ksa** (falls back to the
+account default / primary). Sunday week-start on the site is unchanged.
 
 Start Trial and Contact: email the Propics inbox only — no calendar event.
+
+The team email includes the calendar name/id and whether the event was created
+so a missed calendar can be diagnosed without guessing.
