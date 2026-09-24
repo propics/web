@@ -35,12 +35,21 @@ to deliver mail is `GOOGLE_APPS_SCRIPT_URL`.
 5. Paste the Web App URL into `GOOGLE_APPS_SCRIPT_URL` in `.env.local`.
 6. Change `BOOKING_DEV_MODE` to `false`, then restart the local server.
 
-Book Demo: emails the Propics inbox, emails the client, and creates a
-**30-minute** event on the calendar named **Propics Ksa** (falls back to the
-account default / primary). Every notify address (and the client) is invited
-as a calendar guest with invites sent. Sunday week-start on the site is unchanged.
+Book Demo: emails every notify address and the client with a `propics-demo.ics`
+(`METHOD:REQUEST`) attachment — that is what puts the booking on
+`z.dally@propics.sa` and the client calendar. It also creates a **30-minute**
+event on **Propics Ksa** (falls back to the account default / primary). Google
+Calendar guest invites are best-effort only (`Calendar.Events.insert` /
+`patch` + `sendUpdates: 'all'`). Enable them in Apps Script with
+**Services (+) → Google Calendar API → Add**. Do not rely on `addGuest()`.
+Sunday week-start on the site is unchanged.
 
-Start Trial and Contact: email the Propics inbox only — no calendar event.
+Optional: in Google Calendar, share **Propics Ksa** with `z.dally@propics.sa`
+(permission: **See all event details**) so they can also open the organizer
+copy. ICS is still required; sharing is extra.
 
-The team email includes the calendar name/id and whether the event was created
-so a missed calendar can be diagnosed without guessing.
+Start Trial and Contact: email the Propics inbox only — no calendar event, no ICS.
+
+The team email lists each recipient as `ics sent|fail` and
+`google invite ok|fail`, plus the calendar name/id and whether the event was
+created, so a missed calendar can be diagnosed without guessing.
