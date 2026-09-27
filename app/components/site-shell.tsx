@@ -2,12 +2,24 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary, localePath, switchLocalePath } from "@/lib/i18n";
 
-type Active = "home" | "features" | "about" | "blog" | "contact" | "book-demo";
+type Active =
+  | "home"
+  | "features"
+  | "about"
+  | "blog"
+  | "contact"
+  | "book-demo"
+  | "privacy"
+  | "terms"
+  | "why-propics";
 
 function pathForActive(locale: Locale, active?: Active): string {
   if (!active || active === "home") return localePath(locale);
   if (active === "about") return localePath(locale, "about-us");
   if (active === "book-demo") return localePath(locale, "book-demo");
+  if (active === "privacy") return localePath(locale, "privacy");
+  if (active === "terms") return localePath(locale, "terms");
+  if (active === "why-propics") return localePath(locale, "why-propics");
   return localePath(locale, active);
 }
 
@@ -138,19 +150,21 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
   const t = getDictionary(locale);
   const p = (path = "") => localePath(locale, path);
   // EN LTR: Contact | Ops | Sales | About. AR dict is reversed so RTL shows About on the right.
+  const whyWhat = `${p("why-propics")}#what-is-propics`;
+  const whyWhy = `${p("why-propics")}#why-propics`;
   const hrefGroups =
     locale === "ar"
       ? [
-          [p("about-us"), p("about-us"), p("features")],
+          [whyWhat, whyWhy, p("features")],
           [p("features"), p("features"), p("features")],
           [p("features"), p("features"), p("features")],
-          [p("contact"), "#", "#"],
+          [p("contact"), p("privacy"), p("terms")],
         ]
       : [
-          [p("contact"), "#", "#"],
+          [p("contact"), p("privacy"), p("terms")],
           [p("features"), p("features"), p("features")],
           [p("features"), p("features"), p("features")],
-          [p("about-us"), p("about-us"), p("features")],
+          [whyWhat, whyWhy, p("features")],
         ];
   const labelGroups = [t.footer.col1, t.footer.col2, t.footer.col3, t.footer.col4];
   const columns = labelGroups.map((labels, i) => ({
