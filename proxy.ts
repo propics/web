@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
-  // Kept for older Next runtimes; vinext 16 prefers proxy.ts.
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const locale = pathname === "/ar" || pathname.startsWith("/ar/") ? "ar" : "en";
   const response = NextResponse.next();
@@ -9,6 +8,4 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
-export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|assets/|api/).*)"],
-};
+export default proxy;

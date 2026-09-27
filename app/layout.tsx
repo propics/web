@@ -25,12 +25,21 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const headerList = await headers();
-  const locale = headerList.get("x-locale") === "ar" ? "ar" : "en";
+  const fromHeader = headerList.get("x-locale") === "ar";
+  const locale = fromHeader ? "ar" : "en";
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
     <html lang={locale} dir={dir}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var p=location.pathname;var ar=p==='/ar'||p.indexOf('/ar/')===0;document.documentElement.lang=ar?'ar':'en';document.documentElement.dir=ar?'rtl':'ltr';})();",
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

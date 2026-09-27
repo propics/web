@@ -17,7 +17,7 @@ export function LegalPage({
 }) {
   const doc = getLegalDoc(kind, locale);
   return (
-    <main>
+    <main dir={locale === "ar" ? "rtl" : "ltr"} lang={locale}>
       <Header locale={locale} active={kind} />
       <section className="legal-hero page-hero grid-bg">
         <div className="container">

@@ -68,7 +68,7 @@ export function WhyPropicsPage({ locale }: { locale: Locale }) {
   const bottomIcons = [flowIcons[5], flowIcons[4], flowIcons[3]];
 
   return (
-    <main className="why-page">
+    <main className="why-page" dir={locale === "ar" ? "rtl" : "ltr"} lang={locale}>
       <Header locale={locale} active="why-propics" />
 
       <section id="what-is-propics" className="why-hero page-hero grid-bg centered">
