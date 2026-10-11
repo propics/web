@@ -2624,18 +2624,20 @@ html[dir="rtl"] .about-cta .cta-devices img:last-child{
     text-align: right !important;
   }
 }
-html[dir="rtl"] .l2d-track article:nth-of-type(odd) h3,
-html[dir="rtl"] .l2d-track article:nth-of-type(odd) p{
-  text-align: right !important;
-  direction: rtl !important;
+@media (min-width: 601px){
+  html[dir="rtl"] .l2d-track article:nth-of-type(odd) h3,
+  html[dir="rtl"] .l2d-track article:nth-of-type(odd) p{
+    text-align: right !important;
+    direction: rtl !important;
+  }
+  html[dir="rtl"] .l2d-track article:nth-of-type(even) h3,
+  html[dir="rtl"] .l2d-track article:nth-of-type(even) p{
+    text-align: left !important;
+    direction: rtl !important;
+  }
+  html[dir="rtl"] .l2d-track article h3,
+  html[dir="rtl"] .l2d-track article p{white-space: nowrap !important}
 }
-html[dir="rtl"] .l2d-track article:nth-of-type(even) h3,
-html[dir="rtl"] .l2d-track article:nth-of-type(even) p{
-  text-align: left !important;
-  direction: rtl !important;
-}
-html[dir="rtl"] .l2d-track article h3,
-html[dir="rtl"] .l2d-track article p{white-space: nowrap !important}
 
 /* ===== Primary marketing H2 measure (Figma --section-title-max) =====
    One max-width / line length for section titles on Home, Features,
@@ -3131,4 +3133,189 @@ html[dir="rtl"] .why-flow-turn,
   .why-easy-split,
   .why-easy-list,
   .why-choose-list{grid-template-columns:1fr}
+}
+
+/* Mobile-only Lead-to-Deal: stacked vertical timeline.
+   Desktop/tablet S-curve (min-width 601px) is unchanged. */
+@media (max-width: 600px){
+  .l2d-track.timeline,
+  .l2d-track.journey-timeline,
+  .l2d-track{
+    direction: inherit !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 28px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 28px auto 0 !important;
+    padding: 4px 0 !important;
+    background: none !important;
+    background-image: none !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+  .l2d-track .l2d-path,
+  .l2d-track .timeline-line,
+  .l2d-track .journey-path{
+    display: none !important;
+  }
+  .l2d-track::before{
+    content: "" !important;
+    position: absolute !important;
+    left: 7px !important;
+    right: auto !important;
+    top: 10px !important;
+    bottom: 10px !important;
+    width: 2px !important;
+    background: #fff !important;
+    z-index: 0 !important;
+    display: block !important;
+  }
+  html[dir="rtl"] .l2d-track::before{
+    right: 7px !important;
+    left: auto !important;
+  }
+  .l2d-track::after{
+    content: none !important;
+    display: none !important;
+  }
+  .l2d-track article.l2d-step,
+  .l2d-track article{
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-inline-start: 36px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    transform: none !important;
+    text-align: start !important;
+    overflow: visible !important;
+    grid-template-columns: none !important;
+    white-space: normal !important;
+    z-index: 1 !important;
+  }
+  .l2d-track article.l2d-step::after,
+  .l2d-track article::after{
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: auto !important;
+    top: 8px !important;
+    transform: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    box-sizing: border-box !important;
+    border: 3px solid #fff !important;
+    border-radius: 50% !important;
+    background: #08b9b5 !important;
+    z-index: 2 !important;
+    display: block !important;
+  }
+  html[dir="rtl"] .l2d-track article.l2d-step::after,
+  html[dir="rtl"] .l2d-track article::after{
+    right: 0 !important;
+    left: auto !important;
+  }
+  .l2d-track article.l2d-step > b,
+  .l2d-track article > b{
+    grid-column: auto !important;
+    grid-row: auto !important;
+    font-size: 28px !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.04em !important;
+    line-height: 1 !important;
+    color: #fff !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+    top: auto !important;
+    display: block !important;
+    opacity: 1 !important;
+    justify-self: start !important;
+  }
+  .l2d-track article.l2d-step > img,
+  .l2d-track article > img{
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: contain !important;
+    transform: none !important;
+    position: static !important;
+    top: auto !important;
+    margin: 0 !important;
+    justify-self: start !important;
+  }
+  .l2d-track article.l2d-step > h3,
+  .l2d-track article > h3{
+    grid-column: auto !important;
+    grid-row: auto !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    color: #08b9b5 !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.3 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    top: auto !important;
+    transform: none !important;
+    text-align: start !important;
+  }
+  .l2d-track article.l2d-step > p,
+  .l2d-track article > p{
+    grid-column: auto !important;
+    grid-row: auto !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.45 !important;
+    text-align: start !important;
+    transform: none !important;
+    height: auto !important;
+  }
+  html[dir="rtl"] .l2d-track article,
+  html[dir="rtl"] .l2d-track article.l2d-step,
+  html[dir="rtl"] .l2d-track article h3,
+  html[dir="rtl"] .l2d-track article p{
+    text-align: start !important;
+    white-space: normal !important;
+    direction: rtl !important;
+  }
+  .turquoise-section + .grid-bg{
+    padding-top: 64px !important;
+    padding-bottom: 56px !important;
+  }
 }
