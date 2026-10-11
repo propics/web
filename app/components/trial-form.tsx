@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary, localePath } from "@/lib/i18n";
 
@@ -81,17 +81,22 @@ function PhoneInput({
   );
 }
 
-export function TrialForm({ locale = "en" }: { locale?: Locale }) {
+export function TrialForm({
+  locale = "en",
+  initialType,
+}: {
+  locale?: Locale;
+  initialType?: string;
+}) {
   const t = getDictionary(locale).trial;
-  const [type, setType] = useState<"individual" | "company">("company");
+  const [type, setType] = useState<"individual" | "company">(
+    initialType === "individual" || initialType === "company"
+      ? initialType
+      : "company",
+  );
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
-
-  useEffect(() => {
-    const requested = new URLSearchParams(window.location.search).get("type");
-    if (requested === "individual" || requested === "company") setType(requested);
-  }, []);
   const [message, setMessage] = useState("");
 
   async function submit(event: FormEvent<HTMLFormElement>) {

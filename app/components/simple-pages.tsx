@@ -73,13 +73,19 @@ export function ContactPage({ locale }: { locale: Locale }) {
   );
 }
 
-export function TrialPage({ locale }: { locale: Locale }) {
+export function TrialPage({
+  locale,
+  initialType,
+}: {
+  locale: Locale;
+  initialType?: string;
+}) {
   return (
     <main>
       <Header locale={locale} />
       <section className="trial-page grid-bg">
         <div className="container">
-          <TrialForm locale={locale} />
+          <TrialForm locale={locale} initialType={initialType} />
         </div>
       </section>
       <WhatsAppFab />

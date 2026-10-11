@@ -51,12 +51,16 @@ test("Next build output exists", () => {
 });
 
 test("serves routes with locale dir and development preview metadata", async (t) => {
-  const child = spawn("npx", ["next", "start", "-p", String(PORT), "-H", "127.0.0.1"], {
-    stdio: ["ignore", "pipe", "pipe"],
-    env: { ...process.env, BOOKING_DEV_MODE: "true" },
-  });
+  const child = spawn(
+    process.execPath,
+    ["node_modules/next/dist/bin/next", "start", "-p", String(PORT), "-H", "127.0.0.1"],
+    {
+      stdio: ["ignore", "pipe", "pipe"],
+      env: { ...process.env, BOOKING_DEV_MODE: "true" },
+    },
+  );
   t.after(() => {
-    child.kill("SIGTERM");
+    child.kill("SIGKILL");
   });
   await waitForServer(`${ORIGIN}/`);
 
