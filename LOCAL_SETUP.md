@@ -6,8 +6,8 @@
 2. Open the integrated terminal.
 3. Copy `.env.example` to `.env.local`.
 4. Run `npm install`.
-5. Run `npm run dev`.
-6. Open the local URL shown in the terminal.
+5. Run `npm run dev` (Next.js + Turbopack on http://localhost:5173).
+6. Open http://localhost:5173.
 
 ## Notifications (Gmail)
 

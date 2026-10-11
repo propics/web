@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-  // Kept for older Next runtimes; vinext 16 prefers proxy.ts.
+  // Real Next.js 16 uses middleware.ts. proxy.ts keeps the same locale header
+  // for environments that still dispatch through that entry.
   const { pathname } = request.nextUrl;
   const locale = pathname === "/ar" || pathname.startsWith("/ar/") ? "ar" : "en";
   const response = NextResponse.next();
