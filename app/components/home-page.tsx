@@ -147,7 +147,8 @@ export function HomePage({ locale }: { locale: Locale }) {
             <br />
             <span>{h.journeyTitleHighlight}</span>
           </h2>
-          <div className="timeline journey-timeline l2d-track">
+          <div className="l2d-frame">
+            <div className="timeline journey-timeline l2d-track">
             {/* Figma IMAGE 2 path, scale 2.5 from native 341×509 crop.
                 viewBox 1:1 with the CSS box. Inner fillets RI=40, outer RO=45,
                 long flat shelves (H2/H3/H4). Dots sit on the vertical rails at
@@ -186,6 +187,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                 <p>{step.desc}</p>
               </article>
             ))}
+            </div>
           </div>
         </div>
       </section>
