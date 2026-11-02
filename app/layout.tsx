@@ -2,6 +2,38 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://propics.sa/#organization",
+      name: "Propics",
+      alternateName: "بروبكس",
+      url: "https://propics.sa/",
+      logo: "https://propics.sa/assets/logo-mark.png",
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        telephone: "+966920032052",
+        email: "info@propics.co",
+        availableLanguage: ["Arabic", "English"],
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://propics.sa/#software",
+      name: "Propics",
+      url: "https://propics.sa/",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description: "Real estate CRM and sales management software for real estate developers and sales teams.",
+      publisher: { "@id": "https://propics.sa/#organization" },
+    },
+  ],
+};
+
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://propics.sa"),
   title: "Real Estate CRM & Sales Management Software | Propics",
@@ -36,6 +68,10 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={dir}>
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html:
