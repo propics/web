@@ -74,9 +74,25 @@ test("serves routes with locale dir and development preview metadata", async (t)
     const response = await fetch(`${ORIGIN}${path}`);
     assert.equal(response.status, 200, `${path} should return 200`);
     const html = await response.text();
+    assert.match(html, /<link[^>]*rel="canonical"/, `${path} canonical`);
+    assert.match(html, /<link[^>]*hreflang="ar"/, `${path} Arabic hreflang`);
+    assert.match(html, /<link[^>]*hreflang="en"/, `${path} English hreflang`);
+    if (path === "/blog" || path === "/ar/blog") {
+      assert.match(html, /<meta[^>]*name="robots"[^>]*noindex/, `${path} empty blog noindex`);
+    }
     assert.match(html, new RegExp(`<html[^>]*lang="${lang}"`), `${path} lang`);
     assert.match(html, new RegExp(`<html[^>]*dir="${dir}"`), `${path} dir`);
   }
+
+  assert.match(homeHtml, /application\/ld\+json/, "structured data on homepage");
+  const robots = await fetch(`${ORIGIN}/robots.txt`);
+  assert.equal(robots.status, 200, "robots.txt served");
+  assert.match(await robots.text(), /Sitemap: https:\/\/propics\.sa\/sitemap\.xml/);
+  const sitemap = await fetch(`${ORIGIN}/sitemap.xml`);
+  assert.equal(sitemap.status, 200, "sitemap.xml served");
+  const sitemapXml = await sitemap.text();
+  assert.match(sitemapXml, /https:\/\/propics\.sa\/ar\/features/);
+  assert.doesNotMatch(sitemapXml, /https:\/\/propics\.sa\/blog</);
 
   const contact = await fetch(`${ORIGIN}/api/contact`, {
     method: "POST",
