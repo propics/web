@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Next.js 16.2 treats proxy.ts as the request interceptor (middleware.ts is
-// rejected if both files exist). Same locale header as the previous middleware.
+// Pass the resolved locale as a request header so Server Components render the
+// correct <html lang> and direction on the initial response.
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const locale = pathname === "/ar" || pathname.startsWith("/ar/") ? "ar" : "en";
-  const response = NextResponse.next();
-  response.headers.set("x-locale", locale);
-  return response;
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-locale", locale);
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 export default proxy;
