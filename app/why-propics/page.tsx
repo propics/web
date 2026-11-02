@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
+import { pageSeo } from "../../lib/seo";
+export const metadata = pageSeo("why-propics", "en");
 import { WhyPropicsPage } from "../components/why-propics-page";
 
-export const metadata: Metadata = {
-  title: "What is Propics? - Propics",
-};
 
 export default function Page() {
   return <WhyPropicsPage locale="en" />;

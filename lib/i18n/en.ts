@@ -46,8 +46,8 @@ const en: Dictionary = {
   },
   home: {
     eyebrow: "Real estate sales system with built-in CRM capabilities",
-    heroTitle: "Designed specifically for",
-    heroTitleHighlight: "real estate sector",
+    heroTitle: "Real Estate CRM",
+    heroTitleHighlight: "and Sales Management",
     heroLead: "Manage leads, units, clients, and sales all in one specialized platform built for real estate.",
     primaryCta: "Book Demo",
     secondaryCta: "Start free trial",

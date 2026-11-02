@@ -46,8 +46,8 @@ const ar: Dictionary = {
   },
   home: {
     eyebrow: "نظام مبيعات العقارات مع قدرات CRM مدمجة",
-    heroTitle: "مصمم خصيصاً لـ",
-    heroTitleHighlight: "قطاع العقارات",
+    heroTitle: "نظام CRM عقاري",
+    heroTitleHighlight: "لإدارة المبيعات العقارية",
     heroLead: "إدارة العملاء المحتملين والوحدات والعملاء والمبيعات جميعها في منصة متخصصة واحدة مصممة للعقارات.",
     primaryCta: "احجز عرضاً تجريبياً",
     secondaryCta: "الدردشة على واتساب",
