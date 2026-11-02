@@ -3,8 +3,12 @@ import { headers } from "next/headers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Propics | Real Estate Sales & CRM",
-  description: "Propics is a specialized real estate sales and CRM platform.",
+  metadataBase: new URL("https://propics.sa"),
+  title: "Real Estate CRM & Sales Management Software | Propics",
+  description: "Propics helps Saudi real estate developers and sales teams manage leads, properties, sales, and bookings in one CRM platform.",
+  applicationName: "Propics",
+  openGraph: { type: "website", siteName: "Propics", locale: "en_US" },
+  twitter: { card: "summary_large_image" },
   other: {
     "codex-preview": "development",
   },
